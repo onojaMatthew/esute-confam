@@ -31,14 +31,16 @@ class Signup extends Component {
       email,
       password
     }
-    //console.log(user);
+    console.log(user);
+   
     signup(user)
       .then(data => {
         if (data && data.error) this.setState({ error: data.error });
         else
           this.setState({
             error: "",
-            name: "",
+            firstName: "",
+            lastName: "",
             email: "",
             password: "",
             open: true,

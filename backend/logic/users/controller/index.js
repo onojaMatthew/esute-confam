@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt")
 exports.postSignup = (req, res, next) => {
   // Gets the data from the request object
   const { firstName, lastName, email, password } = req.body;
-
   if (!firstName || !lastName || !email || !password) return res.status(400).json({
     error: "You must provide all required information"
   });
@@ -30,7 +29,6 @@ exports.postSignup = (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(err.message);
       res.json({
         error: err.message
       });
@@ -68,3 +66,32 @@ exports.postSignin = async(req, res, next) => {
       });
   });
 }
+
+exports.userById = (req, res, next, id) => {
+  User.find(id)
+    .then(user => {
+      if (!user) return res.status(400).json({ error: "User not found"});
+      req.profile = user;
+      next();
+    })
+    .catch(err => {
+      res.json(err.message);
+    });
+}
+
+exports.getUserById = (req, res, next) => {
+  return res.json(req.profile);
+}
+
+exports.deleteUser = (req, res) => {
+  const user = req.profile;
+  user.remove((err) => {
+    if (err) return res.status(400).json({ error: "Cannot delete user"});
+    return res.json({ message: "User successfully deleted" });
+  });
+}
+
+exports.signout = (req, res, next) => {
+  res.clearCookie("token");
+  res.json({ message: "Signout success!!" });
+};

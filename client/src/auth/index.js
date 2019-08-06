@@ -18,7 +18,7 @@ export const isAuthenticated = () => {
 }
 
 export const signin = user => {
-  return fetch(`/api/signin`, {
+  return fetch(`${process.env.REACT_APP_API}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -33,7 +33,7 @@ export const signin = user => {
 }
 
 export const signup = user => {
-  return fetch("/api/signup", {
+  return fetch(`${process.env.REACT_APP_API}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -53,7 +53,7 @@ export const signout = (next) => {
     next();
   }
 
-  return fetch(`/api/signout`, {
+  return fetch(`${process.env.REACT_APP_API}/signout`, {
     method: "GET"
   })
     .then(response => {

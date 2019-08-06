@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const database = require("./config/db");
 const validator = require("express-validator");
 const cron = require("node-cron");
+const cors = require("cors");
 
 // Create instance of express 
 const app = express();
@@ -21,6 +22,7 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 // app.use(validator());
 
 // Initialize local variables

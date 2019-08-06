@@ -1,7 +1,7 @@
 
 // Gets a single user from the db
 export const read = (userId) => {
-  return fetch(`/api/user/${userId}`, {
+  return fetch(`${process.env.REACT_APP_API}/user/${userId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -13,7 +13,7 @@ export const read = (userId) => {
 
 // Gets the list of users
 export const list = () => {
-  return fetch("/api/users", {
+  return fetch(`${process.env.REACT_APP_API}/users`, {
     method: "GET"
   })
     .then(response => response.json());
@@ -21,7 +21,7 @@ export const list = () => {
 
 // Removes a user from the db
 export const remove = (userId, token) => {
-  return fetch(`/api/user/${userId}`, {
+  return fetch(`${process.env.REACT_APP_API}/user/${userId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
@@ -33,7 +33,7 @@ export const remove = (userId, token) => {
 
 // Updates a user information
 export const update = (userId, user) => {
-  return fetch(`/api/user/${userId}`, {
+  return fetch(`${process.env.REACT_APP_API}/user/${userId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
