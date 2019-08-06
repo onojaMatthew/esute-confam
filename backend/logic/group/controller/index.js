@@ -1,24 +1,32 @@
 const { Group } = require("../models");
 
+// creates a new cooporative group
 exports.createGroup = async (req, res, next) => {
+  // get the logged in user from the request object
   const { user } = req;
   const { groupName, description, maxCapacity, amount } = req.body;
-
+  // check if the user exist if not, return with error message
   if (!user) return res.status(403).json({ error: "You are not authorized to create a group" });
+
   if (!groupName || !description || !maxCapacity || !amount) return res.status(400).json({
     error: "Incomplete group information"
   });
 
+  // Find a group with the groupName given and assign it to the the variable
   const isExists = await Group.findOne({ groupName });
+  // Check if the group name is already taken or if the group already exists
   if (isExists) return res.status(400).json({ error: "Group name already taken" });
 
   let group = await new Group({ groupName, description, maxCapacity, amount });
   group.groupAdmin = user._id;
 
+  // Create the new group in the database
   group = await group.save();
+  // respond with the newly created group
   return res.json(group);
 }
 
+// Get the cooporative group with the given id
 exports.getGroupById = (req, res, next, id) => {
   Group.findById(id)
     .populate("member", "_id firstName lastName balance")
@@ -34,8 +42,9 @@ exports.getGroupById = (req, res, next, id) => {
 
 // implementing partial and full search
 exports.searchGroup = (req, res, next) => {
-
-  const q = req.query.q.charAt(0).toLowerCase();
+  // convert search term in the query string to lower case and assign it to the variable q
+  const q = req.query.q.toLowerCase();
+  
   Group.find({ $text: { $search: q } })
     .then(result => {
       res.json(result);
@@ -43,23 +52,17 @@ exports.searchGroup = (req, res, next) => {
     .catch(err => {
       res.json({ error: err.message });
     });
-
-  // Group.find({ groupName: {
-  //   $regex: new RegExp(q)
-  // }}, (err, data) => {
-  //   if (err) return res.status(400).json({
-  //     error: err.message
-  //   });
-  //   res.json(data);
-  // }).limit(10);
 }
 
+// Fetches a single cooporative group
 exports.getGroup = (req, res) => {
-  return res.status(200).json(req.group);
+  return res.json(req.group);
 }
 
+// Fetch all the cooporate group from the database
 exports.getGroups = (req, res) => {
   Group.find({})
+    // populate the group with the member data
     .populate("member", "firstName lastName balance email")
     .then(group => {
       res.json(group);
@@ -69,36 +72,48 @@ exports.getGroups = (req, res) => {
     });
 }
 
+// set the searchable field to true for the group with the given id
 exports.setSearchable = (req, res ) => {
   const { groupId, userType } = req.params;
   const { userId } = req.body;
   // check if the user is an admin
-  if (userType !== "admin") return res.status(403).json({ error: "Only the group admin have access to this operation" });
+  if (userType !== "admin") return res.status(403).json({ 
+    error: "Only the group admin have access to this operation" 
+  });
 
   Group.update({ _id: groupId}, { $set: { searchable: true }})
     .then(group => {
+      // if the group with the given is not found, return error message
       if (!group) return res.status(400).json({ error: "Can not find group with the ID" });
+      // return success message if the update operation is successfully
       return res.json({ message: "Success!" });
     })
     .catch(err => { 
+      // respond with any error that may occur
       res.json({ error: err.message });
     });  
 }
 
+//Updates group information
+
 exports.updateGroupInfo = (req, res) => {
+  // get the values from the request object
   const { groupName, amount, maxCapacity, description } = req.body;
+  // find and update the group found with the given id
   Group.findByIdAndUpdate({ _id: req.params.id })
     .then(group => {
+      // if not group respond with error message
       if (!group) return res.status(400).json({ error: "Group not found" });
-
+      // assign the values to their fields in the database
       if (groupName) group.groupName = groupName;
       if (amount) group.amount = amount;
       if (maxCapacity) group.maxCapacity = maxCapacity;
       if (description) group.description = description;
-
+      // save the provided values in the database
       return group.save();
     })
     .catch(err => {
+      // respond with error message if there is/are error
       res.json({ error: err.message });
     });
 }
