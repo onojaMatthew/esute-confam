@@ -5,6 +5,7 @@ const winston = require("winston");
 const cookieParser = require("cookie-parser");
 const database = require("./config/db");
 const validator = require("express-validator");
+const cron = require("node-cron");
 
 // Create instance of express 
 const app = express();
@@ -42,6 +43,12 @@ app.use((err, req, res, next) => {
     })
   }
 });
+
+// const task = cron.schedule("0 * * * * *", () => {
+//   console.log("hello from node cron");
+// });
+
+// task.start();
 
 app.get("/", (req, res) => {
   res.json({ message: "Congrats! Your first project"});
