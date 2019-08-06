@@ -1,0 +1,27 @@
+const express = require("express");
+const { 
+  createGroup, 
+  setSearchable,
+  updateGroupInfo, 
+  joinGroup, 
+  weeklySum,
+  getGroupById,
+  getGroups,
+  getGroup,
+  searchGroup,
+} = require("../controller");
+const router = express.Router();
+const { requireLogin } = require("../../../middleware/auth");
+
+router.post("/group", requireLogin, createGroup);
+router.get("/group", getGroups);
+router.get("/group/search", searchGroup);
+router.put("/group/newmember/:groupId", requireLogin, joinGroup);
+router.put("/group/sum/:groupId", requireLogin, weeklySum);
+router.get("/group/:groupId", getGroup);
+router.put("/group/:groupId/:userType", requireLogin, setSearchable);
+router.put("/group/:groupId", requireLogin, updateGroupInfo);
+
+router.param("groupId", getGroupById);
+
+module.exports = router;
