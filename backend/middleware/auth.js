@@ -6,7 +6,7 @@ require("dotenv").config();
 exports.requireLogin = (req, res, next) => {
   const token = req.header("x-auth-token");
   if(!token) return res.status(403).json({
-    error: "Access denied. No token provided"
+    error: "Access denied. Log in to continue"
   });
 
   try {

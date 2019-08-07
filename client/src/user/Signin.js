@@ -52,7 +52,7 @@ class Signin extends Component {
   render() {
     const { email, password, error, open, redirectToReferer, loading } = this.state;
     if (redirectToReferer) {
-      return <Redirect to="/" />
+      return <Redirect to="/join" />
     }
 
     return (

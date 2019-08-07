@@ -1,25 +1,33 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const GroupList = () => {
+const GroupList = ({ groups }) => {
   return (
     <div>
-      <table class="table table-bordered">
+      <table className="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">S/N</th>
+            <th scope="col">Group Name</th>
+            <th scope="col">Group Description</th>
+            <th scope="col">No. of members</th>
+            <th scope="col">Date Founded</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
+          {groups && groups.map((group, index) => (
+            <tr key={group._id}>
+              <th scope="row">{index + 1}</th>
+              <td>{group && group.groupName}</td>
+              <td>{group && group.description}</td>
+              <td>{group && group.member ? group.member.length : 0}</td>
+              <td>{group && new Date(group.createdAt).toDateString()}</td>
+              <Link to="/details"><td>View details</td></Link>
+            </tr>
+          ))}
+          
+          {/* <tr>
             <th scope="row">2</th>
             <td>Jacob</td>
             <td>Thornton</td>
@@ -27,9 +35,9 @@ const GroupList = () => {
           </tr>
           <tr>
             <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
+            <td colSpan="2">Larry the Bird</td>
             <td>@twitter</td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>

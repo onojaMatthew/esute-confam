@@ -4,11 +4,11 @@ const { Group } = require("../models");
 exports.createGroup = async (req, res, next) => {
   // get the logged in user from the request object
   const { user } = req;
-  const { groupName, description, maxCapacity, amount } = req.body;
+  const { groupName, description, maxCapacity, fixedAmount } = req.body;
   // check if the user exist if not, return with error message
   if (!user) return res.status(403).json({ error: "You are not authorized to create a group" });
 
-  if (!groupName || !description || !maxCapacity || !amount) return res.status(400).json({
+  if (!groupName || !description || !maxCapacity || !fixedAmount) return res.status(400).json({
     error: "Incomplete group information"
   });
 
@@ -17,7 +17,7 @@ exports.createGroup = async (req, res, next) => {
   // Check if the group name is already taken or if the group already exists
   if (isExists) return res.status(400).json({ error: "Group name already taken" });
 
-  let group = await new Group({ groupName, description, maxCapacity, amount });
+  let group = await new Group({ groupName, description, maxCapacity, fixedAmount });
   group.groupAdmin = user._id;
 
   // Create the new group in the database
@@ -98,7 +98,7 @@ exports.setSearchable = (req, res ) => {
 
 exports.updateGroupInfo = (req, res) => {
   // get the values from the request object
-  const { groupName, amount, maxCapacity, description } = req.body;
+  const { groupName, fixedAmount, maxCapacity, description } = req.body;
   // find and update the group found with the given id
   Group.findByIdAndUpdate({ _id: req.params.id })
     .then(group => {
@@ -106,7 +106,7 @@ exports.updateGroupInfo = (req, res) => {
       if (!group) return res.status(400).json({ error: "Group not found" });
       // assign the values to their fields in the database
       if (groupName) group.groupName = groupName;
-      if (amount) group.amount = amount;
+      if (fixedAmount) group.fixedAmount = fixedAmount;
       if (maxCapacity) group.maxCapacity = maxCapacity;
       if (description) group.description = description;
       // save the provided values in the database

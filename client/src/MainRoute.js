@@ -15,6 +15,7 @@ import PrivateRoute from './auth/PrivateRoute';
 import Sidebar from "./core/Sidebar";
 import GroupHome from "./group/GroupHome";
 import Group from "./group/Group";
+import NewGroup from "./group/NewGroup";
 
 const MainRoute = () => (
   <div style={{ marginBottom: 15 }}>
@@ -30,6 +31,7 @@ const MainRoute = () => (
             <PrivateRoute exact path="/join" component={GroupHome} />
             <Route path="/users" component={Users} />
             <PrivateRoute path="/groups" component={Group} />
+            <PrivateRoute path="/newgroup" component={NewGroup} />
            {/* <PrivateRoute exact path="/post/edit/:postId" component={EditPost} />
             <Route path="/post/:postId" component={SinglePost} />
             <PrivateRoute exact path="/user/edit/:userId" component={EditProfile} />

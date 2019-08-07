@@ -15,7 +15,8 @@ const SigninForm = ({ name, email, password, clickSubmit, handleChange }) => (
       <div className="form-group">
         <label className="text-muted">Password</label>
         <input 
-          onChange={handleChange("password")}type="password" 
+          onChange={handleChange("password")}
+          type="password" 
           className="form-control"
           value={password}
         />
