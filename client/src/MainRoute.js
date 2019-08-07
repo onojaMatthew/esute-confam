@@ -16,13 +16,14 @@ import Sidebar from "./core/Sidebar";
 import GroupHome from "./group/GroupHome";
 import Group from "./group/Group";
 import NewGroup from "./group/NewGroup";
+import GroupDetail from "./group/GroupDetail";
 
 const MainRoute = () => (
   <div style={{ marginBottom: 15 }}>
     <Menu />
     <div className="container">
       <div className="row mt-3">
-        <div className="col-md-9">
+        <div className="col-md-12">
           <Switch>
             {/* <Route exact path="/" component={Home} /> */}
             <Route exact path="/" component={Signup} />
@@ -32,17 +33,17 @@ const MainRoute = () => (
             <Route path="/users" component={Users} />
             <PrivateRoute path="/groups" component={Group} />
             <PrivateRoute path="/newgroup" component={NewGroup} />
-           {/* <PrivateRoute exact path="/post/edit/:postId" component={EditPost} />
-            <Route path="/post/:postId" component={SinglePost} />
+            <PrivateRoute exact path="/group/:groupId" component={GroupDetail} />
+            {/* <Route path="/post/:postId" component={SinglePost} />
             <PrivateRoute exact path="/user/edit/:userId" component={EditProfile} />
             
-            <PrivateRoute exact path="/findpeople" component={FindPeople} /> */}  
+            <PrivateRoute exact path="/findpeople" component={FindPeople} /> */}
             
           </Switch>
         </div>
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <Sidebar />
-        </div>
+        </div> */}
       </div>
     </div>
   </div>

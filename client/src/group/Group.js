@@ -44,7 +44,7 @@ class Group extends Component{
       });
   }
 
-  handleJoin(groupId) {
+  handleJoin = (groupId) => {
     const userId = isAuthenticated().user._id;
     const token = isAuthenticated().token;
     join(groupId, userId, token)
@@ -52,22 +52,22 @@ class Group extends Component{
         if (data && data.error) {
           this.setState({ error: data.error});
         } else {
-          // this.updateMembership(groupId, userId)
-          // this.setState({ redirectToReferer: true });
+          this.updateMembership(groupId, userId)
+          this.setState({ redirectToReferer: true });
         }
       });
   }
 
   updateMembership = (groupId, userId, token) => {
     console.log(groupId, "the group name");
-    // addGroupId(groupId, userId, token)
-    //   .then(data => {
-    //     if (data && data.error) {
-    //       console.log("Error")
-    //     } else {
-    //       this.setState({ redirectToReferer: true }, this.updateMembership(groupId, userId));
-    //     }
-    //   });
+    addGroupId(groupId, userId, token)
+      .then(data => {
+        if (data && data.error) {
+          console.log("Error")
+        } else {
+          this.setState({ redirectToReferer: true });
+        }
+      });
   }
 
   render() {
@@ -83,7 +83,7 @@ class Group extends Component{
         <GroupList 
           groups={groups}
           handleJoin={this.handleJoin}
-          // updateMembership={this.updateMembership.bind(this)}
+          updateMembership={this.updateMembership.bind(this)}
         />
       </div>
     )

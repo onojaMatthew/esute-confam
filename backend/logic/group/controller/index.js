@@ -30,6 +30,7 @@ exports.createGroup = async (req, res, next) => {
 exports.getGroupById = (req, res, next, id) => {
   Group.findById(id)
     .populate("member", "_id firstName lastName balance")
+    .populate("groupAdmin", "firstName lastName")
     .then(group => {
       if (!group) return res.status(400).json({ error: "Group not found" });
       req.group = group;
@@ -121,6 +122,12 @@ exports.updateGroupInfo = (req, res) => {
 exports.joinGroup = (req, res, next) => {
   // Gets the userID from the request object
   const { userId } = req.body;
+  const { user: { _id } } = req;
+  console.log(user, "this is the userId")
+  if(userId === null || userId === undefined) return res.status(400).json({ 
+    error: "User id is required to complete this operation" 
+  });
+  if (!user || user._id !== userId) return res.status(400).json({ error: "You don't have access to this operation" });
   // Updates the group by pushing the user into it
   Group.update({ _id: req.params.groupId}, { $push: { member: userId }}, {
     new: true
@@ -128,11 +135,13 @@ exports.joinGroup = (req, res, next) => {
     .populate("member", "_id firstName lastName balance")
     .exec((err, result) => {
       // Checks if there is error and return possible error message
-      if (err) return res.status(400).json({
+      if (err){ 
+        console.log(err.message)
+        return res.status(400).json({
         error: err.message
-      });
+      });}
       // Respond with the result
-      res.json(result);
+      return res.json(result);
     });
 }
 

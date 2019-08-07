@@ -4,6 +4,7 @@ import { isAuthenticated } from "../auth";
 
 
 const GroupList = ({ groups, handleJoin }) => {
+  console.log(isAuthenticated().user)
   return (
     <div>
       <table className="table table-bordered">
@@ -26,9 +27,9 @@ const GroupList = ({ groups, handleJoin }) => {
               <td>{group && group.member ? group.member.length : 0}</td>
               <td>{group && new Date(group.createdAt).toDateString()}</td>
               <td>
-              {isAuthenticated().user.userType === "admin" ? 
-              <Link to="/details">View details</Link> : 
-              <button className="btn btn-primary" onClick={handleJoin(group._id)}>Join</button>}
+              {isAuthenticated().user.userType === "admin" && group.groupAdmin === isAuthenticated().user._id ? 
+              <Link to={`/group/${group._id}`}>View details</Link> : 
+              <button className="btn btn-primary" onClick={handleJoin.bind(this, group._id)}>Join</button>}
               </td>
             </tr>
           )) : "No records found"}

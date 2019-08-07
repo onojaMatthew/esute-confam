@@ -18,7 +18,7 @@ router.post("/signup", postSignup);
 router.post("/signin", postSignin);
 router.get("/signout", signout);
 router.get("/users", getUsers);
-router.put("/user/:userid/admin", requireLogin, setAdmin);
+router.put("/user/:userId/admin", requireLogin, setAdmin);
 router.put("/user/:userId/")
 router.get("/user/:userId", getUserById);
 

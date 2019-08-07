@@ -33,7 +33,7 @@ export const remove = (userId, token) => {
 
 // set the user as an admin
 export const admin = (userId, token) => {
-  return fetch(`${process.env.REACT_APP_API}/group/${userId}/admin`, {
+  return fetch(`${process.env.REACT_APP_API}/user/${userId}/admin`, {
     method: "PUT",
     headers: {
       Accept: "application/json",

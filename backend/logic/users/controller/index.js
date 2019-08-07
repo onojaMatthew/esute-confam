@@ -83,9 +83,8 @@ exports.userById = (req, res, next, id) => {
 exports.setAdmin = (req, res) => {
   const { userId } = req.params;
   const { user } = req;
-  
   if (!userId) return res.status(400).json({ error: "Unknown user"});
-  if (userId !== user) return res.status(400).json({ error: "Only legitimate user can be an admin" });
+  if (userId !== user._id) return res.status(400).json({ error: "Only legitimate user can be an admin" });
 
   User.update({ _id: userId }, { $set: { userType: "admin" }}, {
     new: true

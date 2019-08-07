@@ -36,6 +36,7 @@ class NewGroup extends Component {
       .then(data => {
         if (data && data.error) { this.setState({ error: data.error }) 
         } else {
+          this.setAdmin(userId, token);
           this.setState({
             error: "",
             groupName: "",
@@ -44,7 +45,7 @@ class NewGroup extends Component {
             maxCapacity: "",
             open: true,
             redirectToReferer: true
-          }, this.setAdmin(userId, token));
+          });
         }
           
       });
@@ -63,7 +64,7 @@ class NewGroup extends Component {
   }
 
   render() {
-    const { redirectToReferer, groupName, fixedAmount, description, maxCapacity, error, open } = this.state;
+    const { redirectToReferer, groupName, fixedAmount, description, maxCapacity, error } = this.state;
     if (redirectToReferer) {
       return <Redirect to="/groups" />
     }

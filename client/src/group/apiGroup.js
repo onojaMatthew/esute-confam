@@ -26,6 +26,18 @@ export const getGroups = () => {
     .then(response => response.json());
 } 
 
+export const getGroup = (groupId) => {
+  return fetch(`${process.env.REACT_APP_API}/group/${groupId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    }
+  })
+    .then(response => response.json());
+} 
+
+// Searches the group list
 export const search = (searchTerm) => {
   return fetch(`${process.env.REACT_APP_API}/group/search?q=${searchTerm}`, {
     method: "GET",
@@ -38,13 +50,15 @@ export const search = (searchTerm) => {
 }
 
 export const join = (groupId, userId, token) => {
-  return fetch(`${process.env.REACT_APP_API}/group/newmember/${groupId}`, {
+  console.log(userId)
+  return fetch(`${process.env.REACT_APP_API}/newmember/${groupId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
+      "Content-Type": "application/json",
       "x-auth-token": token
     },
-    body: userId
+    body: JSON.stringify(userId)
   })
     .then(response => response.json())
     .catch(err => console.log(err));
@@ -55,9 +69,10 @@ export const membership = (groupId, userId, token) => {
     method: "PUT",
     headers: {
       Accept: "application/json",
+      "Content-Type": "application/json",
       "x-auth-token": token
     },
-    body: groupId
+    body: JSON.stringify(groupId)
   })
     .then(response => response.json())
     .catch(err => console.log(err));
