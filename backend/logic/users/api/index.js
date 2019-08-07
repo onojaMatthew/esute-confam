@@ -5,7 +5,9 @@ const {
   signout, 
   getUserById, 
   userById,
-  getUsers
+  getUsers,
+  setAdmin,
+  addGroupId,
 } = require("../controller");
 const { signupValidator } = require("../../../validator");
 const {requireLogin } = require("../../../middleware/auth");
@@ -16,6 +18,8 @@ router.post("/signup", postSignup);
 router.post("/signin", postSignin);
 router.get("/signout", signout);
 router.get("/users", getUsers);
+router.put("/user/:userid/admin", requireLogin, setAdmin);
+router.put("/user/:userId/")
 router.get("/user/:userId", getUserById);
 
 router.param("userId", userById);

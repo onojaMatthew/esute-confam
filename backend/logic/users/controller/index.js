@@ -79,6 +79,23 @@ exports.userById = (req, res, next, id) => {
     });
 }
 
+// Set the user userType to admin
+exports.setAdmin = (req, res) => {
+  const { userId } = req.params;
+  const { user } = req;
+  
+  if (!userId) return res.status(400).json({ error: "Unknown user"});
+  if (userId !== user) return res.status(400).json({ error: "Only legitimate user can be an admin" });
+
+  User.update({ _id: userId }, { $set: { userType: "admin" }}, {
+    new: true
+  }).exec((err) => {
+    if (err) return res.status(400).json({ error: "Update failed" });
+    res.json({ message: "Success!"});
+  });
+}
+
+// Gets a single user
 exports.getUserById = (req, res, next) => {
   return res.json(req.profile);
 }
@@ -93,6 +110,24 @@ exports.getUsers = (req, res, next) => {
     .catch(err => {
       res.json({ error: err.message });
     });
+}
+
+// Adds the user's cooporative group id to the user model
+exports.addGroupId = (req, res) => {
+  const { userId } = req.params;
+  const { user } = req;
+  const { groupId } = req.body;
+  
+  if (!userId) return res.status(400).json({ error: "Unknown user"});
+  if (userId !== user) return res.status(400).json({ error: "Only legitimate user can be an admin" });
+  if (!groupId) return res.status(400).json({ error: "Group id is not provided" });
+
+  User.update({ _id: userId }, { $set: { groupId: groupId }}, {
+    new: true
+  }).exec((err) => {
+    if (err) return res.status(400).json({ error: "Update failed" });
+    res.json({ message: "Success!"});
+  }); 
 }
 
 // Delete user

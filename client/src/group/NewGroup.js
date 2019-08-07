@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
-import GroupForm from "./forms/GroupForm"
+import GroupForm from "./forms/GroupForm";
+import { admin } from "../user/apiUser";
 import { createGroup } from "./apiGroup";
 import { isAuthenticated } from "../auth";
 
@@ -30,11 +31,11 @@ class NewGroup extends Component {
     const group = { groupName, fixedAmount, description, maxCapacity }
    
     const token = isAuthenticated().token;
-    console.log(token);
+    const userId = isAuthenticated().user._id;
     createGroup(group, token)
       .then(data => {
-        if (data && data.error) this.setState({ error: data.error });
-        else
+        if (data && data.error) { this.setState({ error: data.error }) 
+        } else {
           this.setState({
             error: "",
             groupName: "",
@@ -43,6 +44,20 @@ class NewGroup extends Component {
             maxCapacity: "",
             open: true,
             redirectToReferer: true
+          }, this.setAdmin(userId, token));
+        }
+          
+      });
+  }
+
+  setAdmin = (userId, token) => {
+    admin(userId, token)
+      .then(data => {
+        if (data && data.error) this.setState({ error: data.error });
+        else
+          this.setState({
+            error: "",
+            open: true,
           });
       });
   }

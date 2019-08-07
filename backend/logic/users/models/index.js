@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema, ObjectId } = mongoose;
 
 const userSchema = new Schema({
   firstName: { type: String, required: true },
@@ -8,6 +8,7 @@ const userSchema = new Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   userType: { type: String, enum: ["admin", "member"], default: "member" },
+  groupId: { type: ObjectId, ref: "Group" },
   balance: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
 });

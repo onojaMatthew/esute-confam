@@ -12,7 +12,7 @@ class GroupHome extends Component{
             <Link to="/newgroup"><button className="btn btn-primary">Create a Cooporate Group</button></Link>
           </div>
           <div className="col-md-4">
-          <Link to="/joingroup"><button className="btn btn-primary">Join a Cooporate Group</button></Link>
+          <Link to="/groups"><button className="btn btn-primary">Join a Cooporate Group</button></Link>
           </div>
         </div>
         <div className="container">
