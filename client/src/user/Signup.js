@@ -54,7 +54,7 @@ class Signup extends Component {
     const { firstName, lastName, email, password, error, open } = this.state;
     return (
       <div className="container">
-        <h2 className="mt-5 mb-5">Signup</h2>
+        <h2 className="mt-5 mb-5">Register</h2>
         <div className="alert alert-danger" style={{ display: error ? "" : "none"}}>{error}</div>
         <div className="alert alert-success" style={{ display: open ? "" : "none"}}>
           New account successfully created. <Link to="/signin">Sign In</Link>.
@@ -67,6 +67,7 @@ class Signup extends Component {
           handleChange={this.handleChange}
           clickSubmit={this.clickSubmit}
         />
+        <p className="lead">Already have an account? <Link to="/signin">Sign in</Link></p>
       </div>
     )
   }

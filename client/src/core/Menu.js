@@ -11,16 +11,16 @@ const isActive = (history, path) => {
 const Menu = ({ history }) => (
   <div>
     <ul className="nav nav-tabs bg-primary">
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <Link className="nav-link" style={isActive(history, "/")} to="/">Home</Link>
-      </li>
+      </li> */}
       {!isAuthenticated() && (
         <>
           <li className="nav-item">
-            <Link className="nav-link" style={isActive(history, "/signin")} to="/signin">Sign In</Link>
+            <Link className="nav-link" style={isActive(history, "/")} to="/">Register</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" style={isActive(history, "/signup")} to="/signup">Sign Up</Link>
+            <Link className="nav-link" style={isActive(history, "/signin")} to="/signin">Sign In</Link>
           </li>
         </>
       )}  
@@ -30,15 +30,12 @@ const Menu = ({ history }) => (
       {isAuthenticated() && (
         <>
           <li className="nav-item">
-            <Link className="nav-link" style={isActive(history, "/findpeople")} to="/findpeople">Find People</Link>
-          </li>
-          <li className="nav-item">
             <Link className="nav-link"  to={`/user/${isAuthenticated().user._id}`} style={isActive(history, `/user/${isAuthenticated().user._id}`)}>
-            {`${isAuthenticated().user.name}'s profile`}
+            {`${isAuthenticated().user.firstName}'s profile`}
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" style={isActive(history, "/post/create")} to="/post/create">Create Post</Link>
+            <Link className="nav-link" style={isActive(history, "/join")} to="/join">Create/Join a Cooporate Group</Link>
           </li>
           <li className="nav-item">
             <span className="nav-link"  style={isActive(history, "/signup")} onClick={() => signout(() => history.push("/"))}

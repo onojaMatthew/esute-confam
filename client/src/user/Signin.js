@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import SigninForm from "./forms/SigninForm";
 import { signin, authenticate } from "../auth";
 
@@ -70,6 +70,7 @@ class Signin extends Component {
           clickSubmit={this.clickSubmit}
           toggleIsText={this.toggleIsText}
         />
+        <p className="lead">Don't have account? <Link to="/">Register</Link></p>
       </div>
     )
   }

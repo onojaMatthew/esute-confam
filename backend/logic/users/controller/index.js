@@ -68,7 +68,7 @@ exports.postSignin = async(req, res, next) => {
 }
 
 exports.userById = (req, res, next, id) => {
-  User.find(id)
+  User.find({ _id: id })
     .then(user => {
       if (!user) return res.status(400).json({ error: "User not found"});
       req.profile = user;
@@ -83,6 +83,19 @@ exports.getUserById = (req, res, next) => {
   return res.json(req.profile);
 }
 
+// gets all users
+exports.getUsers = (req, res, next) => {
+  User.find()
+    .then(user => {
+      if (!user) return res.status(400).json({ error: "No user found" });
+      res.json(user);
+    })
+    .catch(err => {
+      res.json({ error: err.message });
+    });
+}
+
+// Delete user
 exports.deleteUser = (req, res) => {
   const user = req.profile;
   user.remove((err) => {
@@ -91,6 +104,7 @@ exports.deleteUser = (req, res) => {
   });
 }
 
+// logout implementation
 exports.signout = (req, res, next) => {
   res.clearCookie("token");
   res.json({ message: "Signout success!!" });
