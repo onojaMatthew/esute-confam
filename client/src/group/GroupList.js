@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { isAuthenticated } from "../auth";
 
-const GroupList = ({ groups }) => {
+
+const GroupList = ({ groups, handleJoin }) => {
   return (
     <div>
       <table className="table table-bordered">
@@ -23,21 +25,13 @@ const GroupList = ({ groups }) => {
               <td>{group && group.description}</td>
               <td>{group && group.member ? group.member.length : 0}</td>
               <td>{group && new Date(group.createdAt).toDateString()}</td>
-              <Link to="/details"><td>View details</td></Link>
+              <td>
+              {isAuthenticated().user.userType === "admin" ? 
+              <Link to="/details">View details</Link> : 
+              <button className="btn btn-primary" onClick={handleJoin(group._id)}>Join</button>}
+              </td>
             </tr>
           ))}
-          
-          {/* <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colSpan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr> */}
         </tbody>
       </table>
     </div>

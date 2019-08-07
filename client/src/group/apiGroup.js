@@ -36,3 +36,30 @@ export const search = (searchTerm) => {
   })
     .then(response => response.json());
 }
+
+export const join = (groupId, userId, token) => {
+  return fetch(`${process.env.REACT_APP_API}/group/newmember/${groupId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "x-auth-token": token
+    },
+    body: userId
+  })
+    .then(response => response.json())
+    .catch(err => console.log(err));
+}
+
+export const membership = (groupId, userId, token) => {
+  return fetch(`${process.env.REACT_APP_API}/user/${userId}/membership`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "x-auth-token": token
+    },
+    body: groupId
+  })
+    .then(response => response.json())
+    .catch(err => console.log(err));
+}
+
