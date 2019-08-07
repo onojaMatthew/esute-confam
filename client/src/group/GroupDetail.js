@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import GroupList from "./GroupList";
-import { getGroup, search, } from "./apiGroup";
-import { addGroupId } from "../user/apiUser";
-import Search from "./Search";
-import { isAuthenticated } from "../auth";
+import { getGroup, remove, setSearchable } from "./apiGroup";
 import GroupDetailView from "./GroupDetailVew";
+import { isAuthenticated } from "../auth";
 
 class GroupDetail extends Component{
   state = {
     groups: [],
-    search,
     searchTerm: "",
     error: "",
     redirectToReferer: false
@@ -19,6 +15,10 @@ class GroupDetail extends Component{
   componentDidMount() {
     document.title = "Posts";
     const groupId = window.location.pathname.slice(7);
+    this.fetchGroup(groupId);
+  }
+
+  fetchGroup = (groupId) => {
     getGroup(groupId)
       .then(data => {
         if (data && data.error) {
@@ -28,25 +28,33 @@ class GroupDetail extends Component{
       });
   }
   
+  clickDelete = (groupId) => {
+    const token = isAuthenticated().token;
+    remove(groupId, token)
+      .then(data => {
+        if (data && data.error) {
+          return this.setState({ error: data.error });
+        } else {
+          this.setState({ redirectToReferer: true });
+        }
+        
+      })
+      .catch(err => {
+        this.setState({ error: err.message });
+      });
+  }
 
   render() {
-    const { group, error, searchTerm } = this.state;
-    console.log(group)
-    // let selectedGroup;
-    
-    // if (groups) {
-    //   groups.forEach(group => {
-    //     if (group._id === location) {
-    //       selectedGroup = group;
-    //     }
-    //   });
-    // }
-    // console.log(selectedGroup, " this is the selected group")
+    const { group, error, redirectToReferer } = this.state;
+    if (redirectToReferer) {
+      return <Redirect to="/groups" />
+    }
     return(
       <div>
         <div className="alert alert-danger" style={{ display: error ? "" : "none"}}>{error}</div>
         <GroupDetailView
           selectedGroup={group}
+          clickDelete={this.clickDelete}
         />
       </div>
     );

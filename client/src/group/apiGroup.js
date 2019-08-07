@@ -78,3 +78,28 @@ export const membership = (groupId, userId, token) => {
     .catch(err => console.log(err));
 }
 
+export const remove = (groupId, token) => {
+  return fetch(`${process.env.REACT_APP_API}/group/${groupId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "x-auth-token": token
+    }
+  })
+    .then(response => response.json());
+}
+
+// Call to searchable api at the backend
+export const setSearchable = (groupId, userId, token) => {
+  console.log(userId)
+  return fetch(`${process.env.REACT_APP_API}/group/${groupId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "x-auth-token": token
+    }
+  })
+    .then(response => response.json())
+    .catch(err => console.log(err));
+}

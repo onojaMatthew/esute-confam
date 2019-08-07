@@ -168,3 +168,15 @@ exports.weeklySum = (req, res) => {
       res.json({ error: err.message });
     });
 }
+
+exports.deleteGroup = (req, res) => {
+  const { user: { userType } } = req;
+  
+  if (!userType) return res.status(400).json({ error: "Unknown user" });
+  if (userType !== "admin") return res.status(400).json({ error: "Only the group admin can delete this group" });
+  const group = req.group;
+  group.remove((err) => {
+    if (err) return res.status(400).json({ error: "Failed to delete group" });
+    res.json({ message: "Success" });
+  });
+}

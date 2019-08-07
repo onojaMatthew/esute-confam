@@ -12,7 +12,7 @@ import PrivateRoute from './auth/PrivateRoute';
 // import NewPost from './posts/NewPost';
 // import EditPost from "./posts/EditPost";
 // import SinglePost from './posts/SinglePost';
-import Sidebar from "./core/Sidebar";
+// import Sidebar from "./core/Sidebar";
 import GroupHome from "./group/GroupHome";
 import Group from "./group/Group";
 import NewGroup from "./group/NewGroup";

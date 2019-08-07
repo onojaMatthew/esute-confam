@@ -9,6 +9,7 @@ const {
   getGroups,
   getGroup,
   searchGroup,
+  deleteGroup,
 } = require("../controller");
 const { userById } = require("../../users/controller");
 const router = express.Router();
@@ -19,9 +20,11 @@ router.post("/group/new", requireLogin, createGroup);
 router.get("/group/search", searchGroup);
 router.put("/group/sum/:groupId", requireLogin, weeklySum);
 router.get("/group/:groupId", getGroup);
+router.delete("/group/:groupId", requireLogin, deleteGroup);
 router.put("/group/:groupId/:userType", requireLogin, setSearchable);
 router.put("/group/:groupId", requireLogin, updateGroupInfo);
-router.put("/newmember/:groupId/", requireLogin, joinGroup);
+router.put("/group/newmember/:groupId/", requireLogin, joinGroup);
+
 
 router.param("groupId", getGroupById);
 router.param("userId", userById)
