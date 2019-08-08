@@ -42,27 +42,16 @@ exports.getGroupById = (req, res, next, id) => {
     });
 }
 
-// implementing partial and full search
+// Group search
 exports.searchGroup = (req, res, next) => {
   // convert search term in the query string to lower case and assign it to the variable q
   const q = req.query.q.toLowerCase();
-
-  Group.find({})
-    .then(groups => {
-      groups.forEach(group => {
-        console.log(group.searchable)
-        // if (group.searchable === false) {
-        //   Group.find({ $text: { $search: q } })
-        //     .then(result => {
-        //       res.json(result);
-        //     })
-        //     .catch(err => {
-        //       throw new Error;
-        //     });
-        // } else {
-        //   return;
-        // }
-      });
+  Group.find({ $text: { $search: q } })
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => {
+      throw new Error;
     });
 }
 
@@ -87,7 +76,7 @@ exports.getGroups = (req, res) => {
 // set the searchable field to true for the group with the given id
 exports.setSearchable = (req, res ) => {
   const { groupId, userType } = req.params;
-  const { userId } = req.body;
+  const { userId, } = req.body;
   // check if the user is an admin
   if (userType !== "admin") return res.status(403).json({ 
     error: "Only the group admin have access to this operation" 
@@ -110,9 +99,10 @@ exports.setSearchable = (req, res ) => {
 
 exports.updateGroupInfo = (req, res) => {
   // get the values from the request object
-  const { groupName, fixedAmount, maxCapacity, description } = req.body;
+  const { groupId, groupName, fixedAmount, maxCapacity, description } = req.body;
+  console.log(groupId)
   // find and update the group found with the given id
-  Group.findByIdAndUpdate({ _id: req.params.id })
+  Group.findByIdAndUpdate(groupId)
     .then(group => {
       // if not group respond with error message
       if (!group) return res.status(400).json({ error: "Group not found" });
@@ -123,7 +113,8 @@ exports.updateGroupInfo = (req, res) => {
       if (description) group.description = description;
 
       // save the provided values in the database
-      return group.save();
+      group.save();
+      res.json("Successfully updated group");
     })
     .catch(err => {
       // respond with error message if there is/are error
@@ -133,7 +124,7 @@ exports.updateGroupInfo = (req, res) => {
 
 exports.joinGroup = (req, res, next) => {
   // Gets the userID from the request object
-  const { userId } = req.body;
+  const { userId, groupId } = req.body;
   const { user: { _id } } = req;
   console.log(user, "this is the userId")
   if(userId === null || userId === undefined) return res.status(400).json({ 
@@ -141,19 +132,16 @@ exports.joinGroup = (req, res, next) => {
   });
   if (!user || user._id !== userId) return res.status(400).json({ error: "You don't have access to this operation" });
   // Updates the group by pushing the user into it
-  Group.update({ _id: req.params.groupId}, { $push: { member: userId }}, {
+  Group.update({ _id: groupId}, { $push: { member: userId }}, {
     new: true
   })
     .populate("member", "_id firstName lastName balance")
     .exec((err, result) => {
       // Checks if there is error and return possible error message
-      if (err){ 
-        console.log(err.message)
-        return res.status(400).json({
-        error: err.message
-      });}
+      if (err || !result) return res.status(400).json({ error: "Failed to update" });
+
       // Respond with the result
-      return res.json(result);
+      res.json(message, "You have successfully joined the group");
     });
 }
 
@@ -198,7 +186,7 @@ exports.deleteGroup = (req, res) => {
 
 // 
 exports.execWeeklySum = (req, res) => {
-  const { groupId } = req.params;
+  const { groupId } = req.body;
   const weeklySum = exports.weeklySum;
   console.log("Weekly job starting...");
   console.log(typeof scheduler);

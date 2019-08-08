@@ -25,15 +25,19 @@ class EditGroup extends Component {
     this.setState({ [name]: event.target.value });
   }
 
+  // handle update submition
   clickSubmit = event => {
     event.preventDefault();
     const { groupName, fixedAmount, description, maxCapacity } = this.state;
-    const group = { groupName, fixedAmount, description, maxCapacity }
-    const { selectedGroup } = this.props;
-   
     const token = isAuthenticated().token;
     const userId = isAuthenticated().user._id;
-    const groupId = selectedGroup ? selectedGroup._id : null;
+    const groupId = window.location.pathname.slice(7);
+    console.log(groupId, token, " The group id")
+
+    const group = { groupId, groupName, fixedAmount, description, maxCapacity }
+    const { selectedGroup } = this.props;
+   
+  
     editGroup(group, token)
       .then(data => {
         if (data && data.error) { this.setState({ error: data.error }) 
@@ -70,7 +74,6 @@ class EditGroup extends Component {
     if (redirectToReferer) {
       return <Redirect to="/groups" />
     }
-    
     return (
       <div className="container">
         <h2 className="mt-5 mb-5">Create Cooporative Group</h2>

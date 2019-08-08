@@ -105,10 +105,12 @@ export const setSearchable = (groupId, userType, token) => {
 
 // Update group model
 export const editGroup = (data, groupId, token) => {
-  return fetch(`${process.env.REACT_APP_API}/group/${groupId}`, {
+  console.log(data)
+  return fetch(`${process.env.REACT_APP_API}/group/update`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
+      "Content-Type": "application/json",
       "x-auth-token": token
     },
     body: JSON.stringify(data)
@@ -119,12 +121,14 @@ export const editGroup = (data, groupId, token) => {
 
 // Starts automatic weekly saving
 export const weeklySaving = (groupId, token) => {
-  return fetch(`${process.env.REACT_APP_API}/group/sum/${groupId}`, {
+  return fetch(`${process.env.REACT_APP_API}/group/sum`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
+      "Content-Type": "application/json",
       "x-auth-token": token
-    }
+    },
+    body: JSON.stringify(groupId)
   })
     .then(response => response.json())
     .catch(err => console.log(err));

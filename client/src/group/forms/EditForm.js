@@ -36,7 +36,7 @@ const EditForm = ({ groupName, maxCapacity, description, fixedAmount, clickSubmi
           value={fixedAmount}
         />
       </div>
-      <button onClick={clickSubmit} className="btn btn-raised btn-primary">Submit</button>
+      <button onClick={clickSubmit} className="btn btn-raised btn-primary">Update</button>
     </form>
   </div>
 );
