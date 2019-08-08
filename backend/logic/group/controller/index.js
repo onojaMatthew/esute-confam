@@ -96,7 +96,6 @@ exports.setSearchable = (req, res ) => {
 }
 
 //Updates group information
-
 exports.updateGroupInfo = (req, res) => {
   // get the values from the request object
   const { groupId, groupName, fixedAmount, maxCapacity, description } = req.body;
@@ -122,6 +121,7 @@ exports.updateGroupInfo = (req, res) => {
     });
 }
 
+// Gets new member to join a group
 exports.joinGroup = (req, res, next) => {
   // Gets the userID from the request object
   const { userId, groupId } = req.body;
@@ -145,15 +145,11 @@ exports.joinGroup = (req, res, next) => {
     });
 }
 
+// Automatically saves up the fixed amount for the group every week
 exports.weeklySum = (res, groupId) => {
-  // Get the groupId from the req object
-  // const { groupId } = req.body;
-  // Find a the group with the groupId
-  console.log(groupId, "group id");
   Group.findById(groupId)
     .then(group => {
       const fixedAmount = Number(group.fixedAmount)
-      console.log(typeof fixedAmount);
       // return error message if no group found with the group ID provided
       if (!group) return res.status(400).json({ error: "Group not found" });
       // Update the user found with the group ID
@@ -162,8 +158,6 @@ exports.weeklySum = (res, groupId) => {
       }).exec((err, result) => {
         // return 400 error status if the update operation failed
         if (err) return res.status(400).json({ error: err.message });
-        // respond with result of the update operation
-        // res.json(result);
       });
     })
     .catch(err => {
@@ -186,10 +180,10 @@ exports.deleteGroup = (req, res) => {
 
 // 
 exports.execWeeklySum = (req, res) => {
-  const { groupId } = req.body;
+  console.log("hey inside api now");
+  const { groupId } = req.params;
   const weeklySum = exports.weeklySum;
   console.log("Weekly job starting...");
-  console.log(typeof scheduler);
   scheduler(res, weeklySum, groupId);
   console.log("Job sent...");
   res.end();

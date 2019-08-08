@@ -70,17 +70,15 @@ class EditGroup extends Component {
   }
 
   render() {
-    const { redirectToReferer, groupName, fixedAmount, description, maxCapacity, error } = this.state;
-    if (redirectToReferer) {
-      return <Redirect to="/groups" />
-    }
+    const { open, groupName, fixedAmount, description, maxCapacity, error } = this.state;
+    
     return (
       <div className="container">
         <h2 className="mt-5 mb-5">Create Cooporative Group</h2>
         <div className="alert alert-danger" style={{ display: error ? "" : "none"}}>{error}</div>
-        {/* <div className="alert alert-success" style={{ display: open ? "" : "none"}}>
-          New account successfully created. <Link to="/signin">Sign In</Link>.
-        </div> */}
+        <div className="alert alert-success" style={{ display: open ? "" : "none"}}>
+          Updates successfull.
+        </div>
         <EditForm 
           groupName={groupName}
           fixedAmount={fixedAmount} 
