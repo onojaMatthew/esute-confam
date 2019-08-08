@@ -102,3 +102,33 @@ export const setSearchable = (groupId, userType, token) => {
     .then(response => response.json())
     .catch(err => console.log(err));
 }
+
+// Update group model
+export const editGroup = (data, groupId, token) => {
+  return fetch(`${process.env.REACT_APP_API}/group/${groupId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "x-auth-token": token
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .catch(err => console.log(err));
+}
+
+// Starts automatic weekly saving
+export const weeklySaving = (groupId, token) => {
+  return fetch(`${process.env.REACT_APP_API}/group/sum/${groupId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "x-auth-token": token
+    }
+  })
+    .then(response => response.json())
+    .catch(err => console.log(err));
+}
+
+
+// , 

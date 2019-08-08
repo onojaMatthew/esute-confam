@@ -9,6 +9,7 @@ const groupSchema = new Schema({
   searchable: { type: Boolean, default: false },
   member: [{ type: ObjectId, ref: "User" }],
   groupAdmin: { type: ObjectId, ref: "User" },
+  weeklyTotal: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
 });
 

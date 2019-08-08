@@ -4,7 +4,7 @@ const {
   setSearchable,
   updateGroupInfo, 
   joinGroup, 
-  weeklySum,
+  execWeeklySum,
   getGroupById,
   getGroups,
   getGroup,
@@ -19,7 +19,7 @@ router.put("/group/newmember/:groupId/", requireLogin, joinGroup);
 router.get("/group", getGroups);
 router.post("/group/new", requireLogin, createGroup);
 router.get("/group/search", searchGroup);
-router.put("/group/sum/:groupId", requireLogin, weeklySum);
+router.put("/group/sum/:groupId", requireLogin, execWeeklySum);
 router.get("/group/:groupId", getGroup);
 router.delete("/group/:groupId", requireLogin, deleteGroup);
 router.put("/group/:groupId/:userType", requireLogin, setSearchable);

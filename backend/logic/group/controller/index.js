@@ -1,4 +1,5 @@
 const { Group } = require("../models");
+const scheduler = require("../../../middleware/jobs");
 
 // creates a new cooporative group
 exports.createGroup = async (req, res, next) => {
@@ -120,6 +121,7 @@ exports.updateGroupInfo = (req, res) => {
       if (fixedAmount) group.fixedAmount = fixedAmount;
       if (maxCapacity) group.maxCapacity = maxCapacity;
       if (description) group.description = description;
+
       // save the provided values in the database
       return group.save();
     })
@@ -155,22 +157,25 @@ exports.joinGroup = (req, res, next) => {
     });
 }
 
-exports.weeklySum = (req, res) => {
+exports.weeklySum = (res, groupId) => {
   // Get the groupId from the req object
-  const { groupId } = req.body;
+  // const { groupId } = req.body;
   // Find a the group with the groupId
+  console.log(groupId, "group id");
   Group.findById(groupId)
     .then(group => {
+      const fixedAmount = Number(group.fixedAmount)
+      console.log(typeof fixedAmount);
       // return error message if no group found with the group ID provided
       if (!group) return res.status(400).json({ error: "Group not found" });
       // Update the user found with the group ID
-      Group.update({ _id: groupId }, { $inc: { weeklyTotal: "group.amount" }}, {
+      Group.update({ _id: groupId }, { $inc: { weeklyTotal: fixedAmount }}, {
         new: true
       }).exec((err, result) => {
         // return 400 error status if the update operation failed
         if (err) return res.status(400).json({ error: err.message });
         // respond with result of the update operation
-        res.json(result);
+        // res.json(result);
       });
     })
     .catch(err => {
@@ -190,3 +195,15 @@ exports.deleteGroup = (req, res) => {
     res.json({ message: "Success" });
   });
 }
+
+// 
+exports.execWeeklySum = (req, res) => {
+  const { groupId } = req.params;
+  const weeklySum = exports.weeklySum;
+  console.log("Weekly job starting...");
+  console.log(typeof scheduler);
+  scheduler(res, weeklySum, groupId);
+  console.log("Job sent...");
+  res.end();
+}
+

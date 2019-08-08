@@ -49,10 +49,8 @@ app.use((req, res, next) => {
 });
 
 // Custom routes
-require("./config/logger")();
+//require("./config/logger")();
 require("./middleware/routes")(app);
-
-// Unauthorized error middleware
 app.use((err, req, res, next) => {
   if (err.name === "UnauthorizedError") {
     res.status(401).json({
@@ -61,7 +59,9 @@ app.use((err, req, res, next) => {
   }
 });
 
-// default api call
+
+// task.start();
+
 app.get("/", (req, res) => {
   res.json({ message: "Congrats! Your first project"});
 });
