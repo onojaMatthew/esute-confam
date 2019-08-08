@@ -51,7 +51,7 @@ export const search = (searchTerm) => {
 
 export const join = (groupId, userId, token) => {
   console.log(userId)
-  return fetch(`${process.env.REACT_APP_API}/newmember/${groupId}`, {
+  return fetch(`${process.env.REACT_APP_API}/group/newmember/${groupId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -91,9 +91,8 @@ export const remove = (groupId, token) => {
 }
 
 // Call to searchable api at the backend
-export const setSearchable = (groupId, userId, token) => {
-  console.log(userId)
-  return fetch(`${process.env.REACT_APP_API}/group/${groupId}`, {
+export const setSearchable = (groupId, userType, token) => {
+  return fetch(`${process.env.REACT_APP_API}/group/${groupId}/${userType}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",

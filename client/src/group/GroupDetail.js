@@ -18,6 +18,7 @@ class GroupDetail extends Component{
     this.fetchGroup(groupId);
   }
 
+  // Fetch a single group from group db
   fetchGroup = (groupId) => {
     getGroup(groupId)
       .then(data => {
@@ -28,6 +29,7 @@ class GroupDetail extends Component{
       });
   }
   
+  // Delete the group with the given id
   clickDelete = (groupId) => {
     const token = isAuthenticated().token;
     remove(groupId, token)
@@ -44,6 +46,22 @@ class GroupDetail extends Component{
       });
   }
 
+  // Sets searchable field in the group model to true
+  clickSearchable = (groupId) => {
+    const token = isAuthenticated().token;
+    const userType = isAuthenticated().user.userType;
+    setSearchable(groupId, userType, token)
+      .then(data => {
+        if (data && data.error) {
+          this.setState({ error: data.error });
+        }
+        this.fetchGroup(groupId);
+      })
+      .catch(err => {
+        this.setState({ error: "Network error. Please try again" });
+      });
+  }
+
   render() {
     const { group, error, redirectToReferer } = this.state;
     if (redirectToReferer) {
@@ -55,6 +73,7 @@ class GroupDetail extends Component{
         <GroupDetailView
           selectedGroup={group}
           clickDelete={this.clickDelete}
+          clickSearchable={this.clickSearchable}
         />
       </div>
     );

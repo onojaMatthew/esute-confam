@@ -45,13 +45,23 @@ exports.getGroupById = (req, res, next, id) => {
 exports.searchGroup = (req, res, next) => {
   // convert search term in the query string to lower case and assign it to the variable q
   const q = req.query.q.toLowerCase();
-  
-  Group.find({ $text: { $search: q } })
-    .then(result => {
-      res.json(result);
-    })
-    .catch(err => {
-      res.json({ error: err.message });
+
+  Group.find({})
+    .then(groups => {
+      groups.forEach(group => {
+        console.log(group.searchable)
+        // if (group.searchable === false) {
+        //   Group.find({ $text: { $search: q } })
+        //     .then(result => {
+        //       res.json(result);
+        //     })
+        //     .catch(err => {
+        //       throw new Error;
+        //     });
+        // } else {
+        //   return;
+        // }
+      });
     });
 }
 

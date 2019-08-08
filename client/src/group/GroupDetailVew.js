@@ -15,7 +15,7 @@ const styles = {
   }
 }
 
-const GroupDetailView = ({ selectedGroup, handleJoin, clickDelete }) => {
+const GroupDetailView = ({ clickSearchable, selectedGroup, handleJoin, clickDelete }) => {
   let id;
   if (selectedGroup) {
     id = selectedGroup._id;
@@ -28,7 +28,13 @@ const GroupDetailView = ({ selectedGroup, handleJoin, clickDelete }) => {
           <h4 style={styles.h3}>{selectedGroup ? selectedGroup.groupName : "No Records"}</h4>
         </div>
         <div className="col-md-4">
-          <button style={styles.h3} className="btn btn-info">Turn off Searchable</button>
+          <button 
+            style={styles.h3} 
+            className="btn btn-info"
+            onClick={clickSearchable.bind(this, id)}
+          >
+            Click to Make group searchable
+          </button>
         </div>
       </div>
       

@@ -14,13 +14,7 @@ const groupSchema = new Schema({
 
 groupSchema.index({
   groupName: "text",
-  description: "text"
-}, {
-  weights: {
-    groupName: 5,
-    description: 2
-  }
-})
+});
 
 const Group = mongoose.model("Group", groupSchema);
 
