@@ -7,7 +7,7 @@ module.exports = () => {
   mongoose.Promise = global.Promise;
   mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds139480.mlab.com:39480/${process.env.DB_NAME}`, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
     .then(() => {
       winston.info("Connection to database established");

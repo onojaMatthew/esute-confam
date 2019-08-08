@@ -49,8 +49,10 @@ app.use((req, res, next) => {
 });
 
 // Custom routes
-//require("./config/logger")();
+require("./config/logger")();
 require("./middleware/routes")(app);
+
+// Unauthorized error middleware
 app.use((err, req, res, next) => {
   if (err.name === "UnauthorizedError") {
     res.status(401).json({
@@ -59,12 +61,7 @@ app.use((err, req, res, next) => {
   }
 });
 
-const task = cron.schedule("0 * * * * *", () => {
-  axios.put("http://localhost:5000/api/group")
-});
-
-// task.start();
-
+// default api call
 app.get("/", (req, res) => {
   res.json({ message: "Congrats! Your first project"});
 });
