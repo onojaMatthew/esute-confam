@@ -27,7 +27,7 @@ Then **Run** the following **_commands_** at the terminal
 Now bot backend and frontend applications are up and running. For the two to be able to communicate with each other we have one more thing to do.
 ### touch .env
 
-**Add the following line of code into the **_.env_** file you added in the client directory:
+Add the following line of code into the **_.env_** file you added in the client directory:
 
 ### REACT_APP_API=http://localhost:5000/api
 
