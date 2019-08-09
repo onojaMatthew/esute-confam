@@ -15,9 +15,4 @@ exports.weeklyJob = (res, weeklySum, groupId) => {
   }, null, true, "Abidjan");
 }
 
-exports.monthlySettlement = (res, monthlySettlement, groupId) => {
-  const monthly = new cron.schedule("2 * * * *", () => {
-    console.log("job started in 2 minutes...");
-    monthlySettlement(res, groupId);
-  }, null, true, "Abidjan");
-}
+

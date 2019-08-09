@@ -1,5 +1,6 @@
 const { Group } = require("../models");
-const { weeklyJob, monthlySettlement} = require("../../../middleware/jobs");
+const { weeklyJob } = require("../../../middleware/jobs");
+const { monthlySettlement } = require("../../../middleware/monthlyJobs");
 const { User } = require("../../users/models")
 
 // creates a new cooporative group
@@ -194,8 +195,8 @@ exports.memberMonthlySettlement = (res, groupId) => {
             });
           break;
         }
-      } 
-      res.json("Success")
+      }
+      res.json("Success");
     })
     .catch(err => {
       res.json({ error: err.message });
@@ -243,7 +244,6 @@ exports.execWeeklySum = (req, res) => {
   console.log("Weekly job starting...");
   weeklyJob(res, weeklySum, groupId);
   console.log("Job sent...");
-  res.end();
 }
 
 // Handle automatic members monthly settlement job
