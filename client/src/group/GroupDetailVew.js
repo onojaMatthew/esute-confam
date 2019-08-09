@@ -122,7 +122,7 @@ class GroupDetailView extends Component {
   render() {
     const { error } = this.state;
     const { selectedGroup } = this.props;
-
+    console.log(selectedGroup && selectedGroup.member)
     return (
       <div>
         {this.renderView()}

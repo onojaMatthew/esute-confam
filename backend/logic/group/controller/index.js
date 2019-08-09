@@ -1,15 +1,16 @@
 const { Group } = require("../models");
-const scheduler = require("../../../middleware/jobs");
+const { weeklyJob, monthlySettlement} = require("../../../middleware/jobs");
+const { User } = require("../../users/models")
 
 // creates a new cooporative group
 exports.createGroup = async (req, res, next) => {
   // get the logged in user from the request object
   const { user } = req;
-  const { groupName, description, maxCapacity, fixedAmount } = req.body;
+  const { groupName, description, maxCapacity } = req.body;
   // check if the user exist if not, return with error message
   if (!user) return res.status(403).json({ error: "You are not authorized to create a group" });
 
-  if (!groupName || !description || !maxCapacity || !fixedAmount) return res.status(400).json({
+  if (!groupName || !description || !maxCapacity) return res.status(400).json({
     error: "Incomplete group information"
   });
 
@@ -18,7 +19,7 @@ exports.createGroup = async (req, res, next) => {
   // Check if the group name is already taken or if the group already exists
   if (isExists) return res.status(400).json({ error: "Group name already taken" });
 
-  let group = await new Group({ groupName, description, maxCapacity, fixedAmount });
+  let group = await new Group({ groupName, description, maxCapacity });
   group.groupAdmin = user._id;
 
   // Create the new group in the database
@@ -30,7 +31,7 @@ exports.createGroup = async (req, res, next) => {
 // Get the cooporative group with the given id
 exports.getGroupById = (req, res, next, id) => {
   Group.findById(id)
-    .populate("member", "_id firstName lastName balance email")
+    .populate("member", "_id firstName lastName balance email paid")
     .populate("groupAdmin", "firstName lastName")
     .then(group => {
       if (!group) return res.status(400).json({ error: "Group not found" });
@@ -64,7 +65,7 @@ exports.getGroup = (req, res) => {
 exports.getGroups = (req, res) => {
   Group.find({})
     // populate the group with the member data
-    .populate("member", "firstName lastName balance email")
+    .populate("member", "firstName lastName balance email paid")
     .then(group => {
       res.json(group);
     })
@@ -161,25 +162,40 @@ exports.weeklySum = (res, groupId) => {
 }
 
 // Pays a member at the end of the month
-exports.memberSettlement = (req, res) => {
-  const { groupId } = req.params;
-
+exports.memberMonthlySettlement = (res, groupId) => {
+  console.log("stepped into settlement")
   Group.findById(groupId)
-    .then(group => {
+    .then(async (group) => {
       if (!group) return res.status(400).json({ error: "Can not find group" });
+      console.log("found the particular group")
       const members = group.member;
       const amount = group.weeklyTotal;
-      members.every(member => {
-        if (member.paid === false) {
-          Group.findByIdAndUpdate(groupId, {
-            $inc: { "member.balace": amount, "group.weeklyTotal": -amount },
-            $set: { "member.paid": true },
-          }, { new: true }).then(result => {
-            if (!result) return res.status(400).json({ error: "Operation failed" });
-          })
-          return;
+      console.log(amount, members)
+
+      for(let i = 0; i < members.length; i++) {
+        const eachMember = members[i];
+        const user = await User.findById(eachMember);
+        console.log(user);
+        if (user.paid !== true && members.includes(user._id)) {
+          User.find({ _id: eachMember })
+            .then( async (user)=> {
+              if (!user) return res.status(400).json({ error: "Can not find user" });
+              if (user[0].paid === false) {
+                await User.findByIdAndUpdate(eachMember, {
+                  $inc: { balance: amount },
+                  $set: { paid: true }
+                }, { new: true });
+                
+                await Group.findByIdAndUpdate(groupId, { $inc: { weeklyTotal: -amount }}, { new: true });
+              }
+            })
+            .catch(err => {
+              res.json({ error: err.message });
+            });
+          break;
         }
-      });
+      } 
+      res.json("Success")
     })
     .catch(err => {
       res.json({ error: err.message });
@@ -225,8 +241,18 @@ exports.execWeeklySum = (req, res) => {
   const { groupId } = req.params;
   const weeklySum = exports.weeklySum;
   console.log("Weekly job starting...");
-  scheduler(res, weeklySum, groupId);
+  weeklyJob(res, weeklySum, groupId);
   console.log("Job sent...");
   res.end();
 }
 
+// Handle automatic members monthly settlement job
+exports.memberSettlement = (req, res) => {
+  // get the group's ID from the request params  
+  const { groupId } = req.params;
+  console.log(groupId, "The group id")
+  const memberMonthlySettlement = exports.memberMonthlySettlement;
+  console.log("Monthly job starting...");
+  monthlySettlement(res, memberMonthlySettlement, groupId);
+  console.log("Job sent...");
+}

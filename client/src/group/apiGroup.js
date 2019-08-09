@@ -138,6 +138,24 @@ export const weeklySaving = (groupId, token) => {
 }
 
 /**
+ * 
+ * @param {*} userId 
+ * @param {*} groupId 
+ * @param {*} token 
+ */
+export const memberSettlement = (groupId, token) => {
+  return fetch(`${process.env.REACT_APP_API}/group/settlement/${groupId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "x-auth-token": token
+    }
+  })
+    .then(response => response.json())
+    .catch(err => console.log(err));
+}
+
+/**
  * Removes a member from a group
  * @param {userId} ID of the member to be removed from the group 
  * @param {token} Login credentials of the group admin 

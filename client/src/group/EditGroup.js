@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { editGroup, weeklySaving } from "./apiGroup";
+import { editGroup, weeklySaving, memberSettlement } from "./apiGroup";
 import { isAuthenticated } from "../auth";
 import EditForm from "./forms/EditForm";
 
@@ -23,22 +23,21 @@ class EditGroup extends Component {
     this.setState({ [name]: event.target.value });
   }
 
-  // handle update submition
+  // updates group
   clickSubmit = event => {
     event.preventDefault();
     const { groupName, fixedAmount, description, maxCapacity } = this.state;
     const token = isAuthenticated().token;
     const groupId = window.location.pathname.slice(7);
-    console.log(groupId, token, " The group id")
 
     const group = { groupId, groupName, fixedAmount, description, maxCapacity }
-   
-  
+
     editGroup(group, token)
       .then(data => {
         if (data && data.error) { this.setState({ error: data.error }) 
         } else {
           this.handleWeeklySavings(groupId, token);
+          this.handleMemberSettlement(groupId,token)
           this.setState({
             error: "",
             groupName: "",
@@ -64,6 +63,20 @@ class EditGroup extends Component {
           });
       });
   }
+
+  // Calls member settlement api
+  handleMemberSettlement = (groupId, token) => {
+    memberSettlement(groupId, token)
+      .then(data => {
+        if (data && data.error) this.setState({ error: data.error });
+        else
+          this.setState({
+            error: "",
+            open: true,
+          });
+      });
+  }
+
 
   render() {
     const { open, groupName, fixedAmount, description, maxCapacity, error } = this.state;

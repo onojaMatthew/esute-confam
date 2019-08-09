@@ -11,6 +11,7 @@ const {
   deleteGroup,
   newMember,
   removeMember,
+  memberSettlement
 } = require("../controller");
 
 const { userById } = require("../../users/controller");
@@ -22,7 +23,8 @@ router.get("/group", getGroups);
 router.post("/group/new", requireLogin, createGroup);
 router.get("/group/search", searchGroup);
 router.put("/group/sum/:groupId", requireLogin, execWeeklySum);
-router.put("/group/update", requireLogin, updateGroupInfo);
+router.put("/group/settlement/:groupId", requireLogin, memberSettlement);
+router.put("/group/update", updateGroupInfo);
 router.put("/group/:userId/member/:groupId", requireLogin, removeMember);
 router.put("/group/newmember/:groupId/:userId", requireLogin, newMember);
 router.get("/group/:groupId", getGroup);

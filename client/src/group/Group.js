@@ -18,6 +18,10 @@ class Group extends Component{
 
   componentDidMount() {
     document.title = "Posts"
+    this.fetchGroups();
+  }
+
+  fetchGroups = () => {
     getGroups()
       .then(data => {
         if (data && data.error) {
@@ -54,6 +58,7 @@ class Group extends Component{
         if (data && data.error) {
           this.setState({ error: data.error})
         } else {
+          this.fetchGroups();
           this.setState({ message: "Success!"})
         }
       });
