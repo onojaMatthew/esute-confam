@@ -70,9 +70,6 @@ class NewGroup extends Component {
       <div className="container">
         <h2 className="mt-5 mb-5">Create Cooporative Group</h2>
         <div className="alert alert-danger" style={{ display: error ? "" : "none"}}>{error}</div>
-        {/* <div className="alert alert-success" style={{ display: open ? "" : "none"}}>
-          New account successfully created. <Link to="/signin">Sign In</Link>.
-        </div> */}
         <GroupForm 
           groupName={groupName}
           description={description} 

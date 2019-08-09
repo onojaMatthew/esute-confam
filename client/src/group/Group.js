@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-// import { Redirect } from "react-router-dom";
 import GroupList from "./GroupList";
 import { getGroups, search, join } from "./apiGroup";
-// import { addGroupId } from "../user/apiUser";
 import Search from "./Search";
 import { isAuthenticated } from "../auth";
 

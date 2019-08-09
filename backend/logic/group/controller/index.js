@@ -1,6 +1,5 @@
 const { Group } = require("../models");
-const { weeklyJob } = require("../../../middleware/jobs");
-const { monthlySettlement } = require("../../../middleware/monthlyJobs");
+const { weeklyJob, monthlySettlement } = require("../../../middleware/jobs");
 const { User } = require("../../users/models")
 
 // creates a new cooporative group
