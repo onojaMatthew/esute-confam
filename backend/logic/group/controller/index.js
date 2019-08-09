@@ -30,7 +30,7 @@ exports.createGroup = async (req, res, next) => {
 // Get the cooporative group with the given id
 exports.getGroupById = (req, res, next, id) => {
   Group.findById(id)
-    .populate("member", "_id firstName lastName balance")
+    .populate("member", "_id firstName lastName balance email")
     .populate("groupAdmin", "firstName lastName")
     .then(group => {
       if (!group) return res.status(400).json({ error: "Group not found" });
@@ -121,13 +121,11 @@ exports.updateGroupInfo = (req, res) => {
     });
 }
 
-// Gets new member to join a group
+// Adds new member a group
 exports.newMember = (req, res) => {
   console.log(req.body);
-  const {  } = req.body;
   const { user: { _id } } = req;
   const { groupId, userId } = req.params;
-  console.log(_id)
 
   if (userId === undefined || userId === null) return res.status(400).json({ error: "User ID is required" });
   if (userId !== _id) return res.status(400).json({ error: "Unknown user" });
@@ -140,31 +138,6 @@ exports.newMember = (req, res) => {
       res.json({ error: `Operation failed. ${err.message}`});
     });
 }
-
-// exports.joinGroup = (req, res, next) => {
-//   // Gets the userID from the request object
-//   const { userId, groupId } = req.body;
-//   const { user: { _id } } = req;
-//   console.log(user, "this is the userId")
-
-//   if(userId === null || userId === undefined) return res.status(400).json({ 
-//     error: "User id is required to complete this operation" 
-//   });
-
-//   if (!user || user._id !== userId) return res.status(400).json({ error: "You don't have access to this operation" });
-//   // Updates the group by pushing the user into it
-//   Group.update({ _id: groupId}, { $push: { member: userId }}, {
-//     new: true
-//   })
-//     .populate("member", "_id firstName lastName balance")
-//     .exec((err, result) => {
-//       // Checks if there is error and return possible error message
-//       if (err || !result) return res.status(400).json({ error: "Failed to update" });
-
-//       // Respond with the result
-//       res.json(message, "You have successfully joined the group");
-//     });
-// }
 
 // Automatically saves up the fixed amount for the group every week
 exports.weeklySum = (res, groupId) => {
@@ -187,6 +160,33 @@ exports.weeklySum = (res, groupId) => {
     });
 }
 
+// Pays a member at the end of the month
+exports.memberSettlement = (req, res) => {
+  const { groupId } = req.params;
+
+  Group.findById(groupId)
+    .then(group => {
+      if (!group) return res.status(400).json({ error: "Can not find group" });
+      const members = group.member;
+      const amount = group.weeklyTotal;
+      members.every(member => {
+        if (member.paid === false) {
+          Group.findByIdAndUpdate(groupId, {
+            $inc: { "member.balace": amount, "group.weeklyTotal": -amount },
+            $set: { "member.paid": true },
+          }, { new: true }).then(result => {
+            if (!result) return res.status(400).json({ error: "Operation failed" });
+          })
+          return;
+        }
+      });
+    })
+    .catch(err => {
+      res.json({ error: err.message });
+    });
+}
+
+// Deletes a group
 exports.deleteGroup = (req, res) => {
   const { user: { userType } } = req;
   
@@ -199,9 +199,29 @@ exports.deleteGroup = (req, res) => {
   });
 }
 
-// 
+// Removes a member from the group
+exports.removeMember = (req, res) => {
+  const { userId, groupId } = req.params;
+  console.log(req.user)
+  const { user: { _id, userType},  } = req;
+
+  if (!userId) return res.status(400).json({ error: "User ID is required to delete the member" });
+  if (_id === undefined || _id === null) return res.status(400).json({ error: "You must be logged in to delete a member" });
+  if (userType !== "admin") return res.status(400).json({ error: "Only admin can delete a member"});
+
+  Group.findByIdAndUpdate(groupId, { $pull: { member: userId } })
+    .then(result => {
+      if (!result) return res.status(400).json({ error: "Failed to remove member" });
+      res.json("Member removed successfully");
+    })
+    .catch(err => {
+      res.json({ error: err.message });
+    });
+}
+
+// Automates weekly fund accumulation
 exports.execWeeklySum = (req, res) => {
-  console.log("hey inside api now");
+  // get the group's ID from the request params  
   const { groupId } = req.params;
   const weeklySum = exports.weeklySum;
   console.log("Weekly job starting...");

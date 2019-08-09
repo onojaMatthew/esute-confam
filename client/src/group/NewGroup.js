@@ -8,7 +8,6 @@ import { isAuthenticated } from "../auth";
 class NewGroup extends Component {
   state={
     groupName: "",
-    fixedAmount: "",
     description: "",
     maxCapacity: "",
     error: "",
@@ -27,8 +26,8 @@ class NewGroup extends Component {
 
   clickSubmit = event => {
     event.preventDefault();
-    const { groupName, fixedAmount, description, maxCapacity } = this.state;
-    const group = { groupName, fixedAmount, description, maxCapacity }
+    const { groupName, description, maxCapacity } = this.state;
+    const group = { groupName, description, maxCapacity }
    
     const token = isAuthenticated().token;
     const userId = isAuthenticated().user._id;
@@ -40,7 +39,6 @@ class NewGroup extends Component {
           this.setState({
             error: "",
             groupName: "",
-            fixedAmount: "",
             description: "",
             maxCapacity: "",
             open: true,
@@ -64,7 +62,7 @@ class NewGroup extends Component {
   }
 
   render() {
-    const { redirectToReferer, groupName, fixedAmount, description, maxCapacity, error } = this.state;
+    const { redirectToReferer, groupName, description, maxCapacity, error } = this.state;
     if (redirectToReferer) {
       return <Redirect to="/groups" />
     }
@@ -77,7 +75,6 @@ class NewGroup extends Component {
         </div> */}
         <GroupForm 
           groupName={groupName}
-          fixedAmount={fixedAmount} 
           description={description} 
           maxCapacity={maxCapacity}
           handleChange={this.handleChange}

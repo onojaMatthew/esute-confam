@@ -12,6 +12,7 @@ class Group extends Component{
     search,
     searchTerm: "",
     error: "",
+    message: "",
     redirectToReferer: false
   }
 
@@ -52,21 +53,24 @@ class Group extends Component{
       .then(data => {
         if (data && data.error) {
           this.setState({ error: data.error})
-        } 
+        } else {
+          this.setState({ message: "Success!"})
+        }
       });
   }
 
   render() {
-    const { groups, error, searchTerm } = this.state;
+    const { groups, error, searchTerm, message } = this.state;
     return(
       <div>
         <div className="alert alert-danger" style={{ display: error ? "block" : "none"}}>{error}</div>
+        <div className="alert alert-success" style={{ display: message ? "block" : "none"}}>{message}</div>
         <Search 
           handleChange={this.handleChange}
           handleSearch={this.handleSearch}
           searchTerm={searchTerm}
         />
-        <GroupList 
+        <GroupList
           groups={groups}
           handleJoin={this.handleJoin}
         />

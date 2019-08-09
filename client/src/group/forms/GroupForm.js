@@ -27,15 +27,6 @@ const GroupForm = ({ groupName, maxCapacity, description, fixedAmount, clickSubm
           value={maxCapacity}
         />
       </div>
-      <div className="form-group">
-        <label className="text-muted">Fixed amount</label>
-        <input 
-          onChange={handleChange("fixedAmount")}
-          type="text" 
-          className="form-control"
-          value={fixedAmount}
-        />
-      </div>
       <button onClick={clickSubmit} className="btn btn-raised btn-primary">Submit</button>
     </form>
   </div>

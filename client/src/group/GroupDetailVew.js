@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import EditGroup from "./EditGroup";
+import { removeMember } from "./apiGroup";
+import { isAuthenticated } from "../auth";
 
 const styles = {
   text: {
@@ -16,7 +18,8 @@ const styles = {
 
 class GroupDetailView extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    error: "",
   }
 
   toggleView = () => {
@@ -25,6 +28,16 @@ class GroupDetailView extends Component {
         isOpen: !prevState.isOpen
       }
     });
+  }
+
+  handleDeleteMember(userId, groupId){
+    const token = isAuthenticated().token;
+    removeMember(userId, groupId, token)
+      .then(data => {
+        if (data && data.error) {
+          this.setState({ error: data.error });
+        }
+      });
   }
 
   renderView = () => {
@@ -69,6 +82,7 @@ class GroupDetailView extends Component {
                 <th scope="col">No. of members</th>
                 <th scope="col">Date Founded</th>
                 <th scope="col">Fixed Amount</th>
+                <th scope="col">Total Fund</th>
                 <th scope="col">Max Capacity</th>
                 <th scope="col">Searchable</th>
                 <th scope="col">Admin</th>
@@ -82,6 +96,7 @@ class GroupDetailView extends Component {
                 <td style={styles.text}>{selectedGroup && selectedGroup.member ? selectedGroup.member.length : 0}</td>
                 <td style={styles.text}>{selectedGroup && new Date(selectedGroup.createdAt).toDateString()}</td>
                 <td style={styles.text}>{selectedGroup && selectedGroup.fixedAmount}</td>
+                <td style={styles.text}>{selectedGroup && selectedGroup.weeklyTotal}</td>
                 <td style={styles.text}>{selectedGroup && selectedGroup.maxCapacity}</td>
                 <td style={styles.text}>{selectedGroup && selectedGroup.searchable === false ? "False" : "True"}</td>
                 <td style={styles.text}>{selectedGroup && selectedGroup.groupAdmin.firstName}</td>
@@ -105,16 +120,16 @@ class GroupDetailView extends Component {
   }
 
   render() {
+    const { error } = this.state;
     const { selectedGroup } = this.props;
 
-    console.log(selectedGroup, " selected group")
     return (
       <div>
         {this.renderView()}
         <hr className="mt-5" />
 
-      
-        <div className="row mt-5">
+          <div className="alert alert-danger" style={{ display: error ? "block" : "none"}}>{error}</div>       
+         <div className="row mt-5">
           <div className="col-md-8">
             <p style={styles.p}>Group members</p>
           </div>
@@ -126,29 +141,32 @@ class GroupDetailView extends Component {
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th scope="col">Group Name</th>
-                <th scope="col">Group Description</th>
-                <th scope="col">No. of members</th>
-                <th scope="col">Date Founded</th>
-                <th scope="col">Fixed Amount</th>
-                <th scope="col">Max Capacity</th>
-                <th scope="col">Searchable</th>
-                <th scope="col">Admin</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Balance</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td style={styles.text}>{selectedGroup && selectedGroup.groupName}</td>
-                <td style={styles.text}>{selectedGroup && selectedGroup.description}</td>
-                <td style={styles.text}>{selectedGroup && selectedGroup.member ? selectedGroup.member.length : 0}</td>
-                <td style={styles.text}>{selectedGroup && new Date(selectedGroup.createdAt).toDateString()}</td>
-                <td style={styles.text}>{selectedGroup && selectedGroup.fixedAmount}</td>
-                <td style={styles.text}>{selectedGroup && selectedGroup.maxCapacity}</td>
-                <td style={styles.text}>{selectedGroup && selectedGroup.searchable === false ? "False" : "True"}</td>
-                <td style={styles.text}>{selectedGroup && selectedGroup.groupAdmin.firstName}</td>
-                <td ><button style={styles.text} className="btn btn-danger">Delete</button></td>
-              </tr>
+              {selectedGroup && selectedGroup.member ? selectedGroup.member.map(member => (
+                <tr key={member._id}>
+                 <td style={styles.text}>{member.firstName} </td>
+                 <td style={styles.text}>{member.lastName}</td>
+                 <td style={styles.text}>{member.email}</td>
+                 <td style={styles.text}>{member.balance}</td>
+                 <td>
+                    <button 
+                      style={styles.text} 
+                      className="btn btn-danger"
+                      onClick={this.handleDeleteMember.bind(this, member._id, selectedGroup._id,)}
+                    >
+                      Remove member
+                    </button>
+                  </td>
+               </tr>
+              )) : <p>No member for this Group</p>}
+             
             </tbody>
           </table>
         ) : <p className="text-center">Member list is empty</p>}

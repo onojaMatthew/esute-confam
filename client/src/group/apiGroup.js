@@ -1,4 +1,9 @@
 
+/**
+ * The creates a new group
+ * @param {group} DATA of the group to be created 
+ * @param {token} Login credentials of the user creating the new group 
+ */
 export const createGroup = (group, token)=> {
   return fetch(`${process.env.REACT_APP_API}/group/new`, {
     method: "POST",
@@ -15,6 +20,7 @@ export const createGroup = (group, token)=> {
     .catch(err => console.log(err))
 }
 
+// Fetches all the groups on the platform 
 export const getGroups = () => {
   return fetch(`${process.env.REACT_APP_API}/group`, {
     method: "GET",
@@ -26,6 +32,10 @@ export const getGroups = () => {
     .then(response => response.json());
 } 
 
+/**
+ * Fetch a single group with the ID provided
+ * @param {groupId} ID of the group to be fetched 
+ */
 export const getGroup = (groupId) => {
   return fetch(`${process.env.REACT_APP_API}/group/${groupId}`, {
     method: "GET",
@@ -69,20 +79,11 @@ export const join = (groupId, userId, token) => {
     .catch(err => console.log(err));
 }
 
-// export const membership = (groupId, userId, token) => {
-//   return fetch(`${process.env.REACT_APP_API}/user/${userId}/membership`, {
-//     method: "PUT",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//       "x-auth-token": token
-//     },
-//     body: JSON.stringify(groupId)
-//   })
-//     .then(response => response.json())
-//     .catch(err => console.log(err));
-// }
-
+/**
+ * This removes the group with the ID from the group model
+ * @param {groupId} ID of the group the group to be removed 
+ * @param {token} Login credentials of the user performing the operation 
+ */
 export const remove = (groupId, token) => {
   return fetch(`${process.env.REACT_APP_API}/group/${groupId}`, {
     method: "DELETE",
@@ -129,14 +130,26 @@ export const weeklySaving = (groupId, token) => {
     method: "PUT",
     headers: {
       Accept: "application/json",
-      // "Content-Type": "application/json",
       "x-auth-token": token
-    },
-    // body: JSON.stringify()
+    }
   })
     .then(response => response.json())
     .catch(err => console.log(err));
 }
 
-
-// , 
+/**
+ * Removes a member from a group
+ * @param {userId} ID of the member to be removed from the group 
+ * @param {token} Login credentials of the group admin 
+ */
+export const removeMember = (userId, groupId, token) => {
+  return fetch(`${process.env.REACT_APP_API}/group/${userId}/member/${groupId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "x-auth-token": token
+    }
+  })
+    .then(response => response.json())
+    .catch(err => console.log(err));
+}

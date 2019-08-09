@@ -10,6 +10,7 @@ const userSchema = new Schema({
   userType: { type: String, enum: ["admin", "member"], default: "member" },
   groupId: { type: ObjectId, ref: "Group" },
   balance: { type: Number, default: 0 },
+  paid: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now }
 });
 
