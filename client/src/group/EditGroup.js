@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { admin } from "../user/apiUser";
 import { editGroup, weeklySaving } from "./apiGroup";
 import { isAuthenticated } from "../auth";
 import EditForm from "./forms/EditForm";
@@ -30,12 +28,10 @@ class EditGroup extends Component {
     event.preventDefault();
     const { groupName, fixedAmount, description, maxCapacity } = this.state;
     const token = isAuthenticated().token;
-    const userId = isAuthenticated().user._id;
     const groupId = window.location.pathname.slice(7);
     console.log(groupId, token, " The group id")
 
     const group = { groupId, groupName, fixedAmount, description, maxCapacity }
-    const { selectedGroup } = this.props;
    
   
     editGroup(group, token)

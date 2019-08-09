@@ -70,18 +70,18 @@ export const updateLocalStorage = (user, next) => {
   }
 }
 
-// Adds the group id the user join to the user model
-export const addGroupId = (groupId, userId, token) => {
-  return fetch(`${process.env.REACT_APP_API}/user/${userId}/addgroupid`, {
-    method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "x-auth-token": token
-    },
-    body: userId
-  })
-    .then(response => response.json())
-    .catch(err => console.log(err));
-}
+// // Adds the group id the user join to the user model
+// export const addGroupId = (groupId, userId, token) => {
+//   return fetch(`${process.env.REACT_APP_API}/user/${userId}/addgroupid`, {
+//     method: "PUT",
+//     headers: {
+//       Accept: "application/json",
+//       "x-auth-token": token
+//     },
+//     body: userId
+//   })
+//     .then(response => response.json())
+//     .catch(err => console.log(err));
+// }
 
 

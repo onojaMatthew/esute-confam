@@ -43,24 +43,15 @@ app.use((req, res, next) => {
   res.locals = {
     userType: "anonymous",
     userId: "0.0",
-    role: ""
   }
   next();
 });
 
-// Custom routes
-//require("./config/logger")();
+// Error logger
+require("./config/logger")();
+
+// custom routes
 require("./middleware/routes")(app);
-app.use((err, req, res, next) => {
-  if (err.name === "UnauthorizedError") {
-    res.status(401).json({
-      error: "You must be logged in to perform this operation"
-    })
-  }
-});
-
-
-// task.start();
 
 app.get("/", (req, res) => {
   res.json({ message: "Congrats! Your first project"});

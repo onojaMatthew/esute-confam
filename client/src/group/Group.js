@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { Redirect } from "react-router-dom";
 import GroupList from "./GroupList";
 import { getGroups, search, join } from "./apiGroup";
-import { addGroupId } from "../user/apiUser";
+// import { addGroupId } from "../user/apiUser";
 import Search from "./Search";
 import { isAuthenticated } from "../auth";
 
@@ -47,26 +47,12 @@ class Group extends Component{
   handleJoin = (groupId) => {
     const userId = isAuthenticated().user._id;
     const token = isAuthenticated().token;
+   
     join(groupId, userId, token)
       .then(data => {
         if (data && data.error) {
-          this.setState({ error: data.error});
-        } else {
-          this.updateMembership(groupId, userId)
-          this.setState({ redirectToReferer: true });
-        }
-      });
-  }
-
-  updateMembership = (groupId, userId, token) => {
-    console.log(groupId, "the group name");
-    addGroupId(groupId, userId, token)
-      .then(data => {
-        if (data && data.error) {
-          console.log("Error")
-        } else {
-          this.setState({ redirectToReferer: true });
-        }
+          this.setState({ error: data.error})
+        } 
       });
   }
 
@@ -74,7 +60,7 @@ class Group extends Component{
     const { groups, error, searchTerm } = this.state;
     return(
       <div>
-        <div className="alert alert-danger" style={{ display: error ? "" : "none"}}>{error}</div>
+        <div className="alert alert-danger" style={{ display: error ? "block" : "none"}}>{error}</div>
         <Search 
           handleChange={this.handleChange}
           handleSearch={this.handleSearch}
@@ -83,7 +69,6 @@ class Group extends Component{
         <GroupList 
           groups={groups}
           handleJoin={this.handleJoin}
-          updateMembership={this.updateMembership.bind(this)}
         />
       </div>
     )

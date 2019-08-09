@@ -122,28 +122,49 @@ exports.updateGroupInfo = (req, res) => {
 }
 
 // Gets new member to join a group
-exports.joinGroup = (req, res, next) => {
-  // Gets the userID from the request object
-  const { userId, groupId } = req.body;
+exports.newMember = (req, res) => {
+  console.log(req.body);
+  const {  } = req.body;
   const { user: { _id } } = req;
-  console.log(user, "this is the userId")
-  if(userId === null || userId === undefined) return res.status(400).json({ 
-    error: "User id is required to complete this operation" 
-  });
-  if (!user || user._id !== userId) return res.status(400).json({ error: "You don't have access to this operation" });
-  // Updates the group by pushing the user into it
-  Group.update({ _id: groupId}, { $push: { member: userId }}, {
-    new: true
-  })
-    .populate("member", "_id firstName lastName balance")
-    .exec((err, result) => {
-      // Checks if there is error and return possible error message
-      if (err || !result) return res.status(400).json({ error: "Failed to update" });
+  const { groupId, userId } = req.params;
+  console.log(_id)
 
-      // Respond with the result
-      res.json(message, "You have successfully joined the group");
+  if (userId === undefined || userId === null) return res.status(400).json({ error: "User ID is required" });
+  if (userId !== _id) return res.status(400).json({ error: "Unknown user" });
+
+  Group.findByIdAndUpdate(groupId, { $push: { member: userId }})
+    .then(group => {
+      if (!group) return res.status(400).json({ error: "Could not add new member" });
+      res.json("New member added successfully");
+    }).catch(err => {
+      res.json({ error: `Operation failed. ${err.message}`});
     });
 }
+
+// exports.joinGroup = (req, res, next) => {
+//   // Gets the userID from the request object
+//   const { userId, groupId } = req.body;
+//   const { user: { _id } } = req;
+//   console.log(user, "this is the userId")
+
+//   if(userId === null || userId === undefined) return res.status(400).json({ 
+//     error: "User id is required to complete this operation" 
+//   });
+
+//   if (!user || user._id !== userId) return res.status(400).json({ error: "You don't have access to this operation" });
+//   // Updates the group by pushing the user into it
+//   Group.update({ _id: groupId}, { $push: { member: userId }}, {
+//     new: true
+//   })
+//     .populate("member", "_id firstName lastName balance")
+//     .exec((err, result) => {
+//       // Checks if there is error and return possible error message
+//       if (err || !result) return res.status(400).json({ error: "Failed to update" });
+
+//       // Respond with the result
+//       res.json(message, "You have successfully joined the group");
+//     });
+// }
 
 // Automatically saves up the fixed amount for the group every week
 exports.weeklySum = (res, groupId) => {

@@ -49,34 +49,39 @@ export const search = (searchTerm) => {
     .then(response => response.json());
 }
 
+/**
+ * 
+ * @param {groupId} ID of the group a user is joining
+ * @param {userId} ID of the user
+ * @param {token} login credentials of the user 
+ */
 export const join = (groupId, userId, token) => {
   console.log(userId)
-  return fetch(`${process.env.REACT_APP_API}/group/newmember/${groupId}`, {
+  return fetch(`${process.env.REACT_APP_API}/group/newmember/${groupId}/${userId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       "x-auth-token": token
-    },
-    body: JSON.stringify(userId)
+    }
   })
     .then(response => response.json())
     .catch(err => console.log(err));
 }
 
-export const membership = (groupId, userId, token) => {
-  return fetch(`${process.env.REACT_APP_API}/user/${userId}/membership`, {
-    method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "x-auth-token": token
-    },
-    body: JSON.stringify(groupId)
-  })
-    .then(response => response.json())
-    .catch(err => console.log(err));
-}
+// export const membership = (groupId, userId, token) => {
+//   return fetch(`${process.env.REACT_APP_API}/user/${userId}/membership`, {
+//     method: "PUT",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//       "x-auth-token": token
+//     },
+//     body: JSON.stringify(groupId)
+//   })
+//     .then(response => response.json())
+//     .catch(err => console.log(err));
+// }
 
 export const remove = (groupId, token) => {
   return fetch(`${process.env.REACT_APP_API}/group/${groupId}`, {

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import EditGroup from "./EditGroup";
-// import { Link } from "react-router-dom";
-// import { isAuthenticated } from "../auth";
 
 const styles = {
   text: {
@@ -107,13 +105,9 @@ class GroupDetailView extends Component {
   }
 
   render() {
-    const { selectedGroup, clickDelete, clickSearchable } = this.props;
-    console.log(this.state.isOpen)
-    let id;
-    if (selectedGroup) {
-      id = selectedGroup._id;
-    }
+    const { selectedGroup } = this.props;
 
+    console.log(selectedGroup, " selected group")
     return (
       <div>
         {this.renderView()}

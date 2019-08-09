@@ -4,7 +4,6 @@ import { isAuthenticated } from "../auth";
 
 
 const GroupList = ({ groups, handleJoin }) => {
-  console.log(isAuthenticated().user)
   return (
     <div>
       <table className="table table-bordered">
