@@ -133,7 +133,7 @@ exports.newMember = async (req, res) => {
   const group = await Group.findOne({ _id: groupId });
   const members = group.member;
   if (members.includes(userId)) return res.status(400).json({ error: "You are already a member of this group." });
-  
+
   Group.findByIdAndUpdate(groupId, { $push: { member: userId }})
     .then(group => {
       if (!group) return res.status(400).json({ error: "Could not add new member" });
@@ -166,29 +166,29 @@ exports.weeklySum = (res, groupId) => {
 
 // Pays a member at the end of the month
 exports.memberMonthlySettlement = (res, groupId) => {
-  console.log("stepped into settlement")
   Group.findById(groupId)
     .then(async (group) => {
       if (!group) return res.status(400).json({ error: "Can not find group" });
-      console.log("found the particular group")
       const members = group.member;
       const amount = group.weeklyTotal;
-      console.log(amount, members)
+      // Checks if the accumulated fund is 0.
+      if (Number(amount) === 0) return res.status(400).json({ error: "Insufficient fund" });
 
       for(let i = 0; i < members.length; i++) {
         const eachMember = members[i];
         const user = await User.findById(eachMember);
-        console.log(user);
         if (user.paid !== true && members.includes(user._id)) {
+          // find the user that has the current ID
           User.find({ _id: eachMember })
             .then( async (user)=> {
               if (!user) return res.status(400).json({ error: "Can not find user" });
+              // check if the user found has not been paid
               if (user[0].paid === false) {
                 await User.findByIdAndUpdate(eachMember, {
                   $inc: { balance: amount },
                   $set: { paid: true }
                 }, { new: true });
-                
+                // Deduct the amount paid to the member from the group account
                 await Group.findByIdAndUpdate(groupId, { $inc: { weeklyTotal: -amount }}, { new: true });
               }
             })
@@ -245,16 +245,13 @@ exports.execWeeklySum = (req, res) => {
   const weeklySum = exports.weeklySum;
   console.log("Weekly job starting...");
   weeklyJob(res, weeklySum, groupId);
-  console.log("Job sent...");
 }
 
 // Handle automatic members monthly settlement job
 exports.memberSettlement = (req, res) => {
   // get the group's ID from the request params  
   const { groupId } = req.params;
-  console.log(groupId, "The group id")
   const memberMonthlySettlement = exports.memberMonthlySettlement;
   console.log("Monthly job starting...");
   monthlySettlement(res, memberMonthlySettlement, groupId);
-  console.log("Job sent...");
 }
