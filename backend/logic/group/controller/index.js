@@ -123,27 +123,23 @@ exports.updateGroupInfo = (req, res) => {
 }
 
 // Adds new member a group
-exports.newMember = (req, res) => {
+exports.newMember = async (req, res) => {
   console.log(req.body);
   const { user: { _id } } = req;
   const { groupId, userId } = req.params;
 
   if (userId === undefined || userId === null) return res.status(400).json({ error: "User ID is required" });
   if (userId !== _id) return res.status(400).json({ error: "Unknown user" });
-
-  Group.find({ _id: groupId})
+  const group = await Group.findOne({ _id: groupId });
+  const members = group.member;
+  if (members.includes(userId)) return res.status(400).json({ error: "You are already a member of this group." });
+  
+  Group.findByIdAndUpdate(groupId, { $push: { member: userId }})
     .then(group => {
-      if (group.member.includes(userId)) return res.status({ error: "User is already a member of this group" });
-
-      Group.findByIdAndUpdate(groupId, { $push: { member: userId }})
-        .then(group => {
-          if (!group) return res.status(400).json({ error: "Could not add new member" });
-          res.json("New member added successfully");
-        }).catch(err => {
-          res.json({ error: `Operation failed. ${err.message}`});
-        });
+      if (!group) return res.status(400).json({ error: "Could not add new member" });
+      res.json("New member added successfully");
     }).catch(err => {
-      res.json({ error: "Network Error. Try again." });
+      res.json({ error: `Operation failed. ${err.message}`});
     });
 }
 
