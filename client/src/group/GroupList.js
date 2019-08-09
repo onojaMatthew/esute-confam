@@ -17,8 +17,9 @@ const GroupList = ({ groups, handleJoin }) => {
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody>
-          {groups ? groups.map((group, index) => (
+        {groups.length ? (
+          <tbody>
+          {groups && groups.map((group, index) => (
             <tr key={group._id}>
               <th scope="row">{index + 1}</th>
               <td>{group && group.groupName}</td>
@@ -31,8 +32,9 @@ const GroupList = ({ groups, handleJoin }) => {
               <button className="btn btn-primary" onClick={handleJoin.bind(this, group._id)}>Join</button>}
               </td>
             </tr>
-          )) : "No records found"}
+          ))}
         </tbody>
+        ) : <p className="text-center">Group list is empty</p>}
       </table>
     </div>
   );

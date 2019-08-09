@@ -131,12 +131,19 @@ exports.newMember = (req, res) => {
   if (userId === undefined || userId === null) return res.status(400).json({ error: "User ID is required" });
   if (userId !== _id) return res.status(400).json({ error: "Unknown user" });
 
-  Group.findByIdAndUpdate(groupId, { $push: { member: userId }})
+  Group.find({ _id: groupId})
     .then(group => {
-      if (!group) return res.status(400).json({ error: "Could not add new member" });
-      res.json("New member added successfully");
+      if (group.member.includes(userId)) return res.status({ error: "User is already a member of this group" });
+
+      Group.findByIdAndUpdate(groupId, { $push: { member: userId }})
+        .then(group => {
+          if (!group) return res.status(400).json({ error: "Could not add new member" });
+          res.json("New member added successfully");
+        }).catch(err => {
+          res.json({ error: `Operation failed. ${err.message}`});
+        });
     }).catch(err => {
-      res.json({ error: `Operation failed. ${err.message}`});
+      res.json({ error: "Network Error. Try again." });
     });
 }
 
