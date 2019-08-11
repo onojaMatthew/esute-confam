@@ -35,3 +35,4 @@ Add the following line of code into the **_.env_** file you added in the client 
 
 ### **npm start** inside the client directory and;
 ### **npm run dev** in the backend directory
+You can view the running app at **http://localhost:3000** on your browser

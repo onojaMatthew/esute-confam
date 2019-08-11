@@ -2163,3 +2163,5 @@
 {"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:26:42.966Z"}
 {"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:27:01.560Z"}
 {"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:27:02.986Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T22:56:24.854Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T22:56:26.793Z"}
