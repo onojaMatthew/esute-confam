@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import EditGroup from "./EditGroup";
-import { removeMember } from "./apiGroup";
+import { removeMember, startNewRound } from "./apiGroup";
 import { isAuthenticated } from "../auth";
 
+// custom style
 const styles = {
   text: {
     fontSize: 12
@@ -30,9 +31,22 @@ class GroupDetailView extends Component {
     });
   }
 
+  // calls removeMember route at the backend
   handleDeleteMember(userId, groupId){
     const token = isAuthenticated().token;
     removeMember(userId, groupId, token)
+      .then(data => {
+        if (data && data.error) {
+          this.setState({ error: data.error });
+        }
+      });
+  }
+
+  // Calls startNewRound route at the backend
+  handleNewRound = (groupId) => {
+    const token = isAuthenticated().token;
+    const userId = isAuthenticated().user._id;
+    startNewRound(userId, groupId, token)
       .then(data => {
         if (data && data.error) {
           this.setState({ error: data.error });
@@ -130,8 +144,17 @@ class GroupDetailView extends Component {
 
           <div className="alert alert-danger" style={{ display: error ? "block" : "none"}}>{error}</div>       
          <div className="row mt-5">
-          <div className="col-md-8">
+          <div className="col-md-4">
             <p style={styles.p}>Group members</p>
+          </div>
+          <div className="col-md-4">
+            <button 
+              onClick={this.handleNewRound.bind(this, selectedGroup && selectedGroup._id)}
+              style={styles.h3} 
+              type="button" 
+              className="btn btn-info">
+                Start a new round
+            </button>
           </div>
           <div className="col-md-4">
             <button style={styles.h3} type="button" className="btn btn-info">Reshuffle list</button>

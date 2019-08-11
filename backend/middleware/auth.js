@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
 
-
+// Handles Login authentication
 exports.requireLogin = (req, res, next) => {
   const token = req.body.token || req.query.token || req.headers['x-auth-token'] || req.cookies.token;
   // const token = req.header("x-auth-token");

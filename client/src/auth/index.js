@@ -17,6 +17,8 @@ export const isAuthenticated = () => {
   }
 }
 
+
+
 export const signin = user => {
   return fetch(`${process.env.REACT_APP_API}/signin`, {
     method: "POST",

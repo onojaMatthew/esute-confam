@@ -37,10 +37,10 @@ exports.weeklyJob = (res, weeklySum, groupId) => {
  * For testing you may comment in this the code below. It runs every
  * 5 minutes
  */
-exports.monthlySettlement = (res, monthlySettlement, groupId) => {
+exports.monthlySettlement = (res, memberMonthlySettlement, groupId) => {
   const monthly = new cron.schedule("3 * * * *", () => {
     console.log("job started in 2 minutes...");
-    monthlySettlement(res, groupId);
+    memberMonthlySettlement(res, groupId);
   }, null, true, "Abidjan");
 
   monthly.start();

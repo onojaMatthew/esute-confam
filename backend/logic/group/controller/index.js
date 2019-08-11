@@ -124,7 +124,6 @@ exports.updateGroupInfo = (req, res) => {
 
 // Adds new member a group
 exports.newMember = async (req, res) => {
-  console.log(req.body);
   const { user: { _id } } = req;
   const { groupId, userId } = req.params;
 
@@ -166,6 +165,7 @@ exports.weeklySum = (res, groupId) => {
 
 // Pays a member at the end of the month
 exports.memberMonthlySettlement = (res, groupId) => {
+  console.log("stepped in now")
   Group.findById(groupId)
     .then(async (group) => {
       if (!group) return res.status(400).json({ error: "Can not find group" });
@@ -198,12 +198,54 @@ exports.memberMonthlySettlement = (res, groupId) => {
           break;
         }
       }
-      res.json("Success");
     })
     .catch(err => {
       res.json({ error: err.message });
     });
 }
+
+/**
+ * This restart the round after all members have collected the money in turn
+ * so that they can start all over again
+ */
+exports.startNewRound = (req, res, next) => {
+  const {user: { _id, userType } } = req;
+  const { groupId, userId } = req.params;
+  // Checks if user type is admin
+  if (userType !== "admin") return res.status(400).json({ error: "Only admin can start a new round" });
+  if (_id !== userId) return res.status(400).json({ error: "Unknown user. Access denied" });
+
+  Group.findById(groupId)
+    .then(async (group) => {
+      if (!group) return res.status(400).json({ error: "Can not find group" });
+      const members = group.member;
+
+      members.forEach(async (member) => {
+        console.log(member)
+          // find the user that has the current ID
+          User.find({ _id: member })
+            .then( async (user)=> {
+              if (!user) return res.status(400).json({ error: "Can not find user" });
+              // check if the user found has not been paid
+              if (user[0].paid === true) {
+                await User.findByIdAndUpdate(member, {
+                  $set: { paid: false }
+                }, { new: true });
+              }
+            })
+            .catch(err => {
+              res.json({ error: err.message });
+            });
+      });  
+      // this is it
+      res.json("Success");
+    })
+    .catch(err => {
+      res.json({ error: err.message });
+    });
+
+}
+
 
 // Deletes a group
 exports.deleteGroup = (req, res) => {
@@ -245,6 +287,7 @@ exports.execWeeklySum = (req, res) => {
   const weeklySum = exports.weeklySum;
   console.log("Weekly job starting...");
   weeklyJob(res, weeklySum, groupId);
+  res.end();
 }
 
 // Handle automatic members monthly settlement job
@@ -254,4 +297,6 @@ exports.memberSettlement = (req, res) => {
   const memberMonthlySettlement = exports.memberMonthlySettlement;
   console.log("Monthly job starting...");
   monthlySettlement(res, memberMonthlySettlement, groupId);
+  console.log("monthly settlement completed...")
+  res.end();
 }

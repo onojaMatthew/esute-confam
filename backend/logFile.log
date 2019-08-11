@@ -1870,3 +1870,296 @@
 {"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:04:35.195Z"}
 {"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:05:59.241Z"}
 {"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:06:00.739Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:12:20.551Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:12:22.234Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:12:24.129Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:12:26.145Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:12:27.645Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:12:31.891Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:12:33.173Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:12:35.189Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:12:36.596Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:12:38.043Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:12:39.451Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:13:56.638Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:13:59.123Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:00.430Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:03.113Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:04.989Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:07.233Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:14:09.423Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:13.863Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:15.910Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:14:17.329Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:23.231Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:14:24.639Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:40.194Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:43.550Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:45.565Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:14:47.044Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:49.376Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:14:50.968Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-09T15:14:51.789Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-09T15:14:53.127Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T15:41:26.358Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T15:41:27.854Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:03:05.614Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:03:06.988Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:09:03.416Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:09:04.703Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:09:22.151Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:09:23.434Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:09:25.958Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:09:27.258Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:09:35.202Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:09:36.489Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:09:47.059Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:09:48.395Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:09:51.634Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:09:53.579Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:09:54.830Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:15.335Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:10:16.648Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:26.295Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:29.749Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:10:31.043Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:32.330Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:34.263Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:10:35.528Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:37.285Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:10:38.574Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:39.454Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:10:40.729Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:45.409Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:46.607Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:10:47.869Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:49.975Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:10:51.344Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:10:52.637Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:11:19.853Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:11:21.163Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:11:24.439Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:11:27.002Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:11:53.479Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:11:54.792Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:11:56.254Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:11:57.656Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:12:35.857Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:12:37.339Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:12:38.686Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:12:40.851Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:12:44.310Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:12:45.308Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:12:47.080Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:12:47.844Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:12:49.257Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:13:35.506Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:13:36.882Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:13:38.180Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:13:42.291Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:13:43.824Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:14:01.759Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:14:03.179Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:14:04.885Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:14:11.023Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:14:12.313Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:14:17.887Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:14:19.165Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:15:41.548Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:15:42.867Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:15:57.631Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:15:58.992Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:16:02.349Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:16:03.634Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:16:05.573Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:16:06.898Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:16:09.228Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:16:10.475Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:16:44.958Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:16:48.522Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:18:29.885Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:18:31.293Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:18:43.093Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:18:44.586Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:18:59.133Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:19:00.590Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:19:12.433Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:19:13.924Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:19:44.810Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:19:46.134Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:19:50.006Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:19:51.590Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:21:10.486Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:21:12.759Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:21:24.514Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:21:25.924Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:21:31.468Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:21:32.879Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:21:34.458Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:21:35.790Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:24:34.838Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:24:37.008Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:25:33.882Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:25:35.292Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:25:36.570Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:25:48.430Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:25:50.444Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:25:51.726Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:25:58.850Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:26:00.297Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:26:29.822Z"}
+{"level":"error","message":"Failed to connect to db. failed to connect to server [ds139480.mlab.com:39480] on first connect [MongoNetworkError: getaddrinfo EAI_AGAIN ds139480.mlab.com ds139480.mlab.com:39480]","timestamp":"2019-08-11T18:27:09.678Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:29:04.729Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:29:06.135Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:29:09.533Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:29:12.026Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:29:13.385Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:29:20.739Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:29:22.093Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:29:29.070Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:29:30.354Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:29:40.491Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:29:41.820Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:29:46.330Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:29:47.655Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:29:51.055Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:29:52.595Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:30:08.545Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:30:09.940Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:30:19.166Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:30:20.476Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:30:42.993Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:30:44.369Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:31:38.410Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:31:39.542Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:31:41.155Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:31:48.235Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:31:57.396Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:31:58.781Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:31:59.655Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:32:01.307Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:32:02.810Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:32:03.864Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:32:05.248Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:32:16.946Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:32:18.447Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:32:20.626Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:32:27.953Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:32:33.723Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:32:38.559Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:32:40.079Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:32:51.250Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:33:11.263Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:33:13.006Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:33:39.933Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:33:41.427Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:33:43.554Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:33:44.809Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:33:48.747Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:33:50.190Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:33:51.790Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:33:53.039Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:33:55.832Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:33:57.153Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:51:28.637Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:51:29.923Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:51:37.675Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:51:39.177Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:52:22.040Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:52:27.641Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:52:32.902Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:52:34.334Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:52:38.891Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:52:39.954Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:52:41.454Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:52:43.496Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:52:44.936Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:53:48.038Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:53:49.392Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:56:27.285Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:56:28.779Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:56:31.233Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:56:32.545Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T18:57:00.141Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T18:57:01.463Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:07.523Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:11.400Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:12:12.914Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:18.166Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:12:19.646Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:21.525Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:12:22.942Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:25.490Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:12:26.964Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:29.252Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:12:30.752Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:37.864Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:12:39.447Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:41.868Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:12:43.339Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:45.118Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:47.210Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:48.910Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:12:50.319Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:54.444Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:12:56.166Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:12:57.633Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:13:01.211Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:13:02.596Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:13:10.878Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:13:12.365Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:13:13.726Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:13:15.553Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:13:16.943Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:13:21.197Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:13:22.856Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:13:27.544Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:13:28.909Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:22:17.252Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:22:18.672Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:22:30.111Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:22:31.425Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:22:50.262Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:22:51.582Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:23:01.985Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:23:03.301Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:23:11.246Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:23:14.162Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:23:16.673Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:23:20.290Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:25:01.156Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:25:07.669Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:46:07.286Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T19:46:08.973Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T19:46:10.271Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:04:33.245Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:04:34.804Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:09:47.633Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:09:49.069Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:09:50.426Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:11:19.929Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:11:21.467Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:14:11.321Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:14:12.902Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:14:19.111Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:14:20.494Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:14:22.970Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:14:23.963Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:14:25.480Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:14:32.718Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:14:34.842Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:14:37.958Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:14:39.520Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:14:41.643Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:14:43.253Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:14:44.795Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:21:06.986Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:21:08.957Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:26:33.073Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:26:34.502Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:26:36.249Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:26:37.639Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:26:41.474Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:26:42.966Z"}
+{"level":"info","message":"Server is up and running on port 5000","timestamp":"2019-08-11T20:27:01.560Z"}
+{"level":"info","message":"Connection to database established","timestamp":"2019-08-11T20:27:02.986Z"}

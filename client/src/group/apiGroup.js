@@ -171,3 +171,19 @@ export const removeMember = (userId, groupId, token) => {
     .then(response => response.json())
     .catch(err => console.log(err));
 }
+
+/**
+ * 
+ */
+
+export const startNewRound = (userId, groupId, token) => {
+  return fetch(`${process.env.REACT_APP_API}/group/newround/${userId}/${groupId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "x-auth-token": token
+    }
+  })
+    .then(response => response.json())
+    .catch(err => console.log(err));
+}
